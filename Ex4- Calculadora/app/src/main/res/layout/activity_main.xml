@@ -10,10 +10,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center_vertical"
+        android:padding="10dp"
 
         >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/customborder"
+
+        >
+        <Button
+            style="@style/CalculatorButton"
+            android:text="C"
+            android:backgroundTint="@color/orange"
+            >
+        </Button>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="30sp"
+            android:textAlignment="textEnd"
+            >
+
+        </EditText>
+
+
+
+    </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -23,24 +50,142 @@
             >
 
             <Button
-                android:layout_width="100dp"
-                android:layout_height="60dp"
+                style="@style/CalculatorButton"
+                android:text="7"
                 >
 
             </Button>
 
             <Button
-                android:layout_width="100dp"
-                android:layout_height="60dp"
+                style="@style/CalculatorButton"
+                android:text="8"
+
                 >
 
             </Button>
 
             <Button
-                android:layout_width="100dp"
-                android:layout_height="60dp"
+                style="@style/CalculatorButton"
+                android:text="9"
+
                 >
 
+            </Button>
+
+            <Button
+                style="@style/CalculatorButton"
+                android:text="X">
+            </Button>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            >
+
+            <Button
+                style="@style/CalculatorButton"
+                android:text="4"
+
+                >
+
+            </Button>
+
+            <Button
+                style="@style/CalculatorButton"
+                android:text="5"
+
+                >
+
+            </Button>
+
+            <Button
+                style="@style/CalculatorButton"
+                android:text="6"
+
+                >
+
+            </Button>
+
+            <Button
+                style="@style/CalculatorButton"
+                android:text="+">
+            </Button>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            >
+
+            <Button
+                style="@style/CalculatorButton"
+                android:text="3"
+                >
+
+            </Button>
+
+            <Button
+                style="@style/CalculatorButton"
+                android:text="2"
+                >
+
+            </Button>
+
+            <Button
+                style="@style/CalculatorButton"
+                android:text="1"
+                >
+
+            </Button>
+
+            <Button
+                style="@style/CalculatorButton"
+                android:text="-">
+            </Button>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            >
+
+            <Button
+                style="@style/CalculatorButton"
+                android:text="."
+
+                >
+
+            </Button>
+
+            <Button
+                style="@style/CalculatorButton"
+                android:text="0"
+
+                >
+
+            </Button>
+
+            <Button
+                style="@style/CalculatorButton"
+                android:text="="
+                android:backgroundTint="@color/orange"
+                >
+
+            </Button>
+
+            <Button
+                style="@style/CalculatorButton"
+                android:text="/">
             </Button>
 
         </LinearLayout>
