@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -69,37 +70,41 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        botaoOk = (Button) findViewById(R.id.botaoOk);
+        botaoOk = (Button) findViewById(R.id.ok);
         botaoOk.setEnabled(false);
 
-        textoPergunta = (TextView) findViewById(R.id.campoTexto);
+        textoPergunta = (TextView) findViewById(R.id.text);
 
-        opcaoA = (RadioButton) findViewById(R.id.opcaoA);
-        opcaoB = (RadioButton) findViewById(R.id.opcaoB);
-        opcaoC = (RadioButton) findViewById(R.id.opcaoC);
-
-
+        opcaoA = (RadioButton) findViewById(R.id.bta);
+        opcaoB = (RadioButton) findViewById(R.id.btb);
+        opcaoC = (RadioButton) findViewById(R.id.btc);
 
 
-        radioGroup = (RadioGroup) findViewById(R.id.grupoRadio);
+
+
+        radioGroup = (RadioGroup) findViewById(R.id.radiogroup);
 
         atualizaPerguntas(botaoOk);
+
+        botaoOk.setOnClickListener(v -> {
+            atualizaPerguntas(botaoOk);
+        });
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
-                    case R.id.opcaoA:
+                    case R.id.bta:
                         Log.d("s", "Opcao n1!");
                         listaRespostas[numeroPergunta-1] = 1;
                         break;
 
-                    case R.id.opcaoB:
+                    case R.id.btb:
                         Log.d("s", "Opcao n2!");
                         listaRespostas[numeroPergunta-1] = 2;
                         break;
 
-                    case R.id.opcaoC:
+                    case R.id.btc:
                         Log.d("s", "Opcao n3!");
                         listaRespostas[numeroPergunta-1] = 3;
                         break;
