@@ -10,8 +10,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginEnd="14dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +32,7 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/fundo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -44,6 +43,8 @@
                 android:layout_gravity="center"
                 android:text="Titulo"
                 android:textAlignment="center"
+                android:textSize="20dp"
+                android:textColor="@color/titulo"
                 tools:layout_editor_absoluteX="257dp"
                 tools:layout_editor_absoluteY="17dp" />
 
@@ -52,10 +53,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:text="Descricao"
+                android:textColor="@color/descricao"
                 android:textAlignment="center"
-                tools:layout_editor_absoluteX="262dp"
-                tools:layout_editor_absoluteY="94dp" />
+
+                />
 
         </LinearLayout>
 
