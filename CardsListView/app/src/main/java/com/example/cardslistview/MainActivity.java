@@ -2,17 +2,21 @@ package com.example.cardslistview;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +52,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                DadosPersonagem dadosPersonagem;
+                dadosPersonagem = (DadosPersonagem) adapter.getItem(position);
+
+                criarDialog(dadosPersonagem);
+            }
+        });
     }
 
     static class ViewPersonagem{
@@ -137,5 +152,25 @@ public class MainActivity extends AppCompatActivity {
 
             return view;
         }
+    }
+
+    public void criarDialog(DadosPersonagem dadosPersonagem){
+        AlertDialog.Builder alert;
+        alert = new AlertDialog.Builder(MainActivity.this);
+
+        alert.setTitle(dadosPersonagem.getTitulo());
+        alert.setMessage(dadosPersonagem.getDescricao());
+        alert.setCancelable(true);
+        alert.setIcon(dadosPersonagem.getIcone());
+        alert.setPositiveButton("Confirma", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(MainActivity.this, "Confirmado!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        alert.create();
+        alert.show();
+
     }
 }
