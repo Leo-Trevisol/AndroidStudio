@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">CardsListView</string>
+    <string name="narutodesc">
+        No anime, o protagonista Naruto nunca desiste de seus amigos, pois ele sabe o valor de uma grande amizade,
+        no decorrer ele só vem fazendo muitos mais amigos com suas palavras. Então vamos lutar por nossas amizade,
+        vamos fazer elas florescerem e crescerem cada vez mais e saiba, amizade nunca é demais.
+    </string>
+    <string name="jojodesc">
+        JoJos conta a história da família Joestar, uma família cujos vários membros descobrem
+        que estão destinados a derrubar inimigos sobrenaturais, tais como Dio Brando um vampiro semi-imortal,
+        Yoshikage Kira um serial killer e Diavolo um líder de gangue usando poderes únicos que possuem.
+    </string>
+    <string name="haikyuudesc">
+        A história gira em torno de Hinata Shoyo, um aluno do ensino médio que
+        sonha em ser jogador de vôlei depois que assistiu a um campeonato pela
+        televisão. O grande problema: ele é baixinho, e jogar vôlei com a rede daquela altura
+        não é tarefa fácil. Mas Hinata já demonstra sua determinação e cria um clube de vôlei.
+    </string>
+    <string name="fullmetaldesc">
+        Edward e Alphonse Elric são dois irmãos alquimistas procurando o catalisador lendário chamado pedra filosofal,
+        um objeto poderoso que lhes permite restaurar seus corpos (que foram perdidos numa tentativa de trazer sua mãe de volta
+        à vida pelo uso da alquimia).
+    </string>
+    <string name="yuyuhakushodesc">
+        Yusuke morre ao tentar salvar uma criança e, pelo ato de caridade,
+        recebe uma segunda chance no mundo espiritual. A saga conta as provas que Yusuke
+        enfrenta para se tornar detetive espiritual e, após se tornar um, seus primeiros casos.
+    </string>
 </resources>
