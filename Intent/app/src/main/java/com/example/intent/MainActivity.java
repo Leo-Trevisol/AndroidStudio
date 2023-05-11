@@ -70,12 +70,4 @@ public class MainActivity extends AppCompatActivity {
         TextView titulo;
 
     }
-
-
-    public void trocaTela(){
-        Intent in = new Intent(MainActivity.this, SegundaActivity.class);
-        in.putExtra("key", "leozin");
-        startActivity(in);
-
-    }
 }
