@@ -8,33 +8,32 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    IAdditionService mService;
+    IScanInterface mService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intentService = new Intent(this, AdditionService.class);
+        Intent intentService = new Intent(this, ScannerService.class);
         bindService(intentService,mConnection, Context.BIND_AUTO_CREATE);
 
         Button bt = findViewById(R.id.button);
 
         bt.setOnClickListener(view -> {
-            add();
+            scan();
         });
     }
 
     ServiceConnection mConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-                mService = IAdditionService.Stub.asInterface(iBinder);
+                mService = IScanInterface.Stub.asInterface(iBinder);
         }
 
         @Override
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    public void add(){
+    public void scan(){
         EditText edit1 = findViewById(R.id.edit1);
         EditText edit2 = findViewById(R.id.edit2);
 
@@ -53,11 +52,9 @@ public class MainActivity extends AppCompatActivity {
         int result = 0;
 
         try{
-            result = mService.add(val1,val2);
+            mService.scan();
         }catch(Exception e){
             e.printStackTrace();
         }
-        TextView textView = findViewById(R.id.text1);
-        textView.setText(result + "");
     }
 }

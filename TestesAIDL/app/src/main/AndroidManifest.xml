@@ -14,9 +14,13 @@
         android:theme="@style/Theme.AIDLTest"
         tools:targetApi="31">
         <service
-            android:name=".AdditionService"
+            android:name=".ScannerService"
             android:enabled="true"
             android:exported="true"></service>
+        <service
+            android:name=".AdditionService"
+            android:enabled="true"
+            android:exported="true" />
 
         <activity
             android:name=".MainActivity"
