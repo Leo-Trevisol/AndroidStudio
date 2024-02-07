@@ -11,6 +11,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private final static int requestCodeSegundaActivity = 5;
+    public final static String MAIN_ACTIVITY = "MAIN_ACTIVITY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         bt.setOnClickListener(view -> {
             Intent i = new Intent(MainActivity.this, SegundaActivity.class);
+            i.putExtra(MAIN_ACTIVITY, "TESTE");
             startActivityForResult(i, requestCodeSegundaActivity);
         });
     }
