@@ -17,25 +17,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Intent receivedIntent = getIntent();
-        Uri uri = receivedIntent.getData();
-        URL webPage = null;
-
-        if(uri != null){
-            try {
-
-                webPage = new URL(uri.getScheme(), uri.getHost(), uri.getPath());
-
-
-            }catch(Exception e){
-                Toast.makeText(this, "ERRO " + e.getMessage() , Toast.LENGTH_SHORT).show(); e.printStackTrace();
-
-            }
-
-            WebView web = findViewById(R.id.web);
-            web.setWebViewClient(new WebViewClient());
-            web.loadUrl(webPage.toString());
-        }
+        Toast.makeText(this, "" + getIntent().getStringExtra("data"), Toast.LENGTH_SHORT).show();
     }
 }

@@ -15,21 +15,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       Button bt = findViewById(R.id.button);
+        Button bt = findViewById(R.id.button);
 
-        bt.setOnClickListener(v -> {
-//            Uri uri = Uri.parse("http://www.youtube.com/watch?v=xGPeNN9S0Fg");
-//            Intent pesquisarNoBrowser = new Intent(Intent.ACTION_VIEW, uri);
-//            startActivity(pesquisarNoBrowser);
+        bt.setOnClickListener(view -> {
+            Intent intent = new Intent("com.example.intentimplicitareceiver");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("data","data string");
 
-            Intent acess = getPackageManager().getLaunchIntentForPackage("com.google.android.youtube");
-
-            if(acess != null){
-                startActivity(acess);
-                
+            if(intent != null){
+                startActivity(intent);
             }else{
-                Toast.makeText(this, "F LEOZIN", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "erro", Toast.LENGTH_SHORT).show();
             }
+
+
         });
     }
 }
