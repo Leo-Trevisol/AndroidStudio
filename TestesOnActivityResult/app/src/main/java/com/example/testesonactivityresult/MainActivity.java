@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final static int requestCodeSegundaActivity = 5;
+    private final static int requestCodeSegundaActivity = 1;
     public final static String MAIN_ACTIVITY = "MAIN_ACTIVITY";
 
     @Override
