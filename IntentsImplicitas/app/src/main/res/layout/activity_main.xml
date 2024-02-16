@@ -5,75 +5,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:padding="10dp"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="15dp"
-        android:src="@drawable/oned"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_margin="15dp"
-        android:gravity="center"
-        android:text=""
-        android:textSize="25sp"
-        android:fontFamily="sans-serif-smallcaps"
+    <ImageView
+        android:id="@+id/imageCasal"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_margin="5dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3">
+        app:layout_constraintBottom_toTopOf="@id/text_casal_top"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/text_casal_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/black"
+        android:drawableStart="@drawable/lovegif"
+        android:drawableEnd="@drawable/lovegif"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@id/imageCasal"
+        app:layout_constraintBottom_toTopOf="@id/container"
+        tools:layout_editor_absoluteX="0dp">
 
     </TextView>
 
-    <EditText
-        android:id="@+id/edit"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_margin="15dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginEnd="14dp"
-        android:inputType="textCapWords"
-        android:hint="DIGITE AQUI O QUE VOCÊ QUER DE MIM:"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toTopOf="@id/text_casal_bottom"
+        app:layout_constraintTop_toBottomOf="@id/text_casal_top"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView"></EditText>
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_margin="15dp"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="@color/red"
+    <TextView
+        android:id="@+id/text_casal_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/black"
+        android:drawableStart="@drawable/lovegif"
+        android:drawableEnd="@drawable/lovegif"
         android:gravity="center"
-        android:text="CLIQUE SE ME AMA!"
+        android:text=""
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/edit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="96dp">
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@id/container"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
-    </Button>
+    </TextView>
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_margin="15dp"
-        android:src="@drawable/porcoss"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button"
-     />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

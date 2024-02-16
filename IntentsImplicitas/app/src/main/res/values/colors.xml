@@ -6,4 +6,5 @@
     <color name="gray">#36000000</color>
     <color name="colorC">#ccc</color>
     <color name="lightgray">#888</color>
+    <color name="defaultBackground">#f4f4f4</color>
 </resources>
