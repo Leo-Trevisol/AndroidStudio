@@ -13,16 +13,25 @@
         android:layout_height="250dp"
         android:src="@drawable/amor"
         android:background="@drawable/amor"
-        app:layout_constraintBottom_toTopOf="@id/layout1"
+        app:layout_constraintBottom_toTopOf="@id/linear"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </ImageView>
 
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/amor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_margin="5dp"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,10 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:gravity="center"
+            style="@style/TextViewPadrao"
             android:text="DIGITE O SEU NOME:"
-            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,6 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:ems="10"
+            android:textSize="20sp"
             android:inputType="textCapSentences"
             app:layout_constraintBottom_toTopOf="@id/text2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,10 +68,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:gravity="center"
+            style="@style/TextViewPadrao"
             android:text="DIGITE O NOME DO SEU AMOR:"
-            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edit1" />
@@ -74,6 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:ems="10"
+            android:textSize="20sp"
             android:inputType="textCapSentences"
             app:layout_constraintBottom_toTopOf="@id/relativeLayout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -86,8 +93,8 @@
             android:layout_height="100dp"
             android:layout_margin="5dp"
             android:background="@drawable/background_spinner"
-            app:layout_constraintBottom_toTopOf="@id/bt_confirm"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edit2">
 
@@ -96,16 +103,13 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-
                 <TextView
                     android:id="@+id/text3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
                     android:layout_margin="5dp"
+                    style="@style/TextViewPadrao"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-smallcaps"
-                    android:gravity="center"
                     android:text="QUE TIPO DE CASAL VOCÊS SÃO?"
                     android:textSize="15sp" />
 
@@ -123,6 +127,8 @@
 
         </RelativeLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
         <Button
             android:id="@+id/bt_confirm"
             android:layout_width="200dp"
@@ -133,13 +139,13 @@
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_gravity="center"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/relativeLayout">
+            app:layout_constraintTop_toBottomOf="@id/layout1">
 
         </Button>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

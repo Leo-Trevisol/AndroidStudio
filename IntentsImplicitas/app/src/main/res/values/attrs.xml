@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EndButton">
+        <attr name="confirmarText" format="string" localization="suggested" />
+        <attr name="cancelarText" format="string" localization="suggested" />
+        <attr name="hideCancelar" format="boolean" localization="suggested" />
+    </declare-styleable>
+</resources>

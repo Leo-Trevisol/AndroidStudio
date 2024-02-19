@@ -7,4 +7,7 @@
     <color name="colorC">#ccc</color>
     <color name="lightgray">#888</color>
     <color name="defaultBackground">#f4f4f4</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color> <!-- Cor da barra de notificações -->
+    <color name="colorAccent">#FF4081</color>
 </resources>

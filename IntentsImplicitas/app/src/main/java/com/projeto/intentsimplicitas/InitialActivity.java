@@ -2,31 +2,23 @@ package com.projeto.intentsimplicitas;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.projeto.intentsimplicitas.classes.CasaisBean;
-import com.projeto.intentsimplicitas.classes.Teste;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class InitialActivity extends AppCompatActivity {
 
@@ -34,9 +26,9 @@ public class InitialActivity extends AppCompatActivity {
 
     public Spinner spin;
     CasaisBean itemSelecionado = null;
-    static final String CHAVE_EXTRA_NOME_INITIAL_ACTIVITY = "CHAVE_EXTRA_NOME_INITIAL_ACTIVITY";
+    public static final String CHAVE_EXTRA_NOME_INITIAL_ACTIVITY = "CHAVE_EXTRA_NOME_INITIAL_ACTIVITY";
 
-    static final String CHAVE_EXTRA_AMOR_INITIAL_ACTIVITY = "CHAVE_EXTRA_AMOR_INITIAL_ACTIVITY";
+    public static final String CHAVE_EXTRA_AMOR_INITIAL_ACTIVITY = "CHAVE_EXTRA_AMOR_INITIAL_ACTIVITY";
     static final String CHAVE_EXTRA_CASAL_INITIAL_ACTIVITY = "CHAVE_EXTRA_CASAL_INITIAL_ACTIVITY";
 
     public List<CasaisBean> lstCasaisBean;
@@ -97,21 +89,25 @@ public class InitialActivity extends AppCompatActivity {
 
         Button bt = findViewById(R.id.bt_confirm);
 
-        bt.setOnClickListener(v -> {
-            if((itemSelecionado != null && itemSelecionado.getNomeCasal() != null ) && (!textNome.getText().toString().isBlank()
-                    && !textNome.getText().toString().isEmpty()) && (!textAmor.getText().toString().isBlank()
-                    && !textAmor.getText().toString().isEmpty())){
+//        bt.setOnClickListener(v -> {
+//            if((itemSelecionado != null && itemSelecionado.getNomeCasal() != null ) && (!textNome.getText().toString().isBlank()
+//                    && !textNome.getText().toString().isEmpty()) && (!textAmor.getText().toString().isBlank()
+//                    && !textAmor.getText().toString().isEmpty())){
+//
+//                Intent i = new Intent(InitialActivity.this, MainActivity.class);
+//                i.putExtra(CHAVE_EXTRA_NOME_INITIAL_ACTIVITY, textNome.getText().toString());
+//                i.putExtra(CHAVE_EXTRA_AMOR_INITIAL_ACTIVITY, textAmor.getText().toString());
+//                i.putExtra(CHAVE_EXTRA_CASAL_INITIAL_ACTIVITY, itemSelecionado);
+//
+//                startActivity(i);
+//            }else{
+//                Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
-                Intent i = new Intent(InitialActivity.this, MainActivity.class);
-                i.putExtra(CHAVE_EXTRA_NOME_INITIAL_ACTIVITY, textNome.getText().toString());
-                i.putExtra(CHAVE_EXTRA_AMOR_INITIAL_ACTIVITY, textAmor.getText().toString());
-                i.putExtra(CHAVE_EXTRA_CASAL_INITIAL_ACTIVITY, itemSelecionado);
+        Intent i = new Intent(InitialActivity.this, MainActivity.class);
 
-                startActivity(i);
-            }else{
-                Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
-            }
-        });
+        startActivity(i);
 
 
 
