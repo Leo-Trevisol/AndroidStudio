@@ -15,7 +15,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.projeto.intentsimplicitas.classes.CasaisBean;
+import com.projeto.intentsimplicitas.classes.CasalBean;
+import com.projeto.intentsimplicitas.classes.Global;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +26,10 @@ public class InitialActivity extends AppCompatActivity {
     public EditText textNome, textAmor;
 
     public Spinner spin;
-    CasaisBean itemSelecionado = null;
-    public static final String CHAVE_EXTRA_NOME_INITIAL_ACTIVITY = "CHAVE_EXTRA_NOME_INITIAL_ACTIVITY";
+    CasalBean itemSelecionado = null;
+    public static final String CHAVE_EXTRA_CASAL_INITIAL_ACTIVITY = "CHAVE_EXTRA_CASAL_INITIAL_ACTIVITY";
 
-    public static final String CHAVE_EXTRA_AMOR_INITIAL_ACTIVITY = "CHAVE_EXTRA_AMOR_INITIAL_ACTIVITY";
-    static final String CHAVE_EXTRA_CASAL_INITIAL_ACTIVITY = "CHAVE_EXTRA_CASAL_INITIAL_ACTIVITY";
-
-    public List<CasaisBean> lstCasaisBean;
+    public List<CasalBean> lstCasalBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,25 +43,13 @@ public class InitialActivity extends AppCompatActivity {
 
          spin = findViewById(R.id.tipo_spin);
 
-        lstCasaisBean = new ArrayList<>();
+        lstCasalBean = Global.getInstance().getLstCasaisBean();
 
-        lstCasaisBean.add(new CasaisBean("Casal de Porcos", R.drawable.porcos));
-        lstCasaisBean.add(new CasaisBean("Casal de Cavalos",
-                R.drawable.cavalos));
-        lstCasaisBean.add(new CasaisBean("Casal de Corujas",
-                R.drawable.corujas));
-        lstCasaisBean.add(new CasaisBean("Casal de Ratos",
-                R.drawable.ratos));
-        lstCasaisBean.add(new CasaisBean("Casal de Patos",
-                R.drawable.patos));
-        lstCasaisBean.add(new CasaisBean("Casal de Tigres",
-                R.drawable.tigres));
-
-        ArrayAdapter<CasaisBean> dataAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, lstCasaisBean);
+        ArrayAdapter<CasalBean> dataAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, lstCasalBean);
         spin.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.red)));
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         String hint = "Selecione uma opção";
-        dataAdapter.insert(new CasaisBean(hint, 0), 0);
+        dataAdapter.insert(new CasalBean(hint, 0), 0);
         spin.setAdapter(dataAdapter);
 
         // Define um listener para tratar a seleção
@@ -76,7 +62,7 @@ public class InitialActivity extends AppCompatActivity {
                     itemSelecionado = null;
                 } else {
                     // Execute a lógica normalmente para as outras opções
-                    itemSelecionado = (CasaisBean) parentView.getItemAtPosition(position);
+                    itemSelecionado = (CasalBean) parentView.getItemAtPosition(position);
                     ((TextView) parentView.getChildAt(0)).setTextColor(getResources().getColor(android.R.color.black));
                 }
             }
@@ -89,27 +75,24 @@ public class InitialActivity extends AppCompatActivity {
 
         Button bt = findViewById(R.id.bt_confirm);
 
-//        bt.setOnClickListener(v -> {
-//            if((itemSelecionado != null && itemSelecionado.getNomeCasal() != null ) && (!textNome.getText().toString().isBlank()
-//                    && !textNome.getText().toString().isEmpty()) && (!textAmor.getText().toString().isBlank()
-//                    && !textAmor.getText().toString().isEmpty())){
-//
-//                Intent i = new Intent(InitialActivity.this, MainActivity.class);
-//                i.putExtra(CHAVE_EXTRA_NOME_INITIAL_ACTIVITY, textNome.getText().toString());
-//                i.putExtra(CHAVE_EXTRA_AMOR_INITIAL_ACTIVITY, textAmor.getText().toString());
-//                i.putExtra(CHAVE_EXTRA_CASAL_INITIAL_ACTIVITY, itemSelecionado);
-//
-//                startActivity(i);
-//            }else{
-//                Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        bt.setOnClickListener(v -> {
+            if((itemSelecionado != null && itemSelecionado.getNomeCasal() != null ) && (!textNome.getText().toString().isBlank()
+                    && !textNome.getText().toString().isEmpty()) && (!textAmor.getText().toString().isBlank()
+                    && !textAmor.getText().toString().isEmpty())){
 
-        Intent i = new Intent(InitialActivity.this, MainActivity.class);
+                itemSelecionado.setPessoa1(textNome.getText().toString());
+                itemSelecionado.setPessoa2(textAmor.getText().toString());
 
-        startActivity(i);
+                Global.getInstance().setCasaisBean(itemSelecionado);
 
+                Intent i = new Intent(InitialActivity.this, MainActivity.class);
+                i.putExtra(CHAVE_EXTRA_CASAL_INITIAL_ACTIVITY, itemSelecionado);
 
+                startActivity(i);
+            }else{
+                Toast.makeText(InitialActivity.this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 }

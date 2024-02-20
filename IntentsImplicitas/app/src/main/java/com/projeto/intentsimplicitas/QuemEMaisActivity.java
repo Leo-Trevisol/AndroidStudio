@@ -7,11 +7,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.projeto.intentsimplicitas.classes.CasalBean;
+import com.projeto.intentsimplicitas.classes.Global;
+
 public class QuemEMaisActivity extends AppCompatActivity {
 
     TextView textPergunta;
 
-    Button btPessoa1, btPessoa2, btContinuar;
+    Button btPessoa1, btPessoa2, btContinuar, btProxima;
 
     ImageView btVoltar, btAvancar;
 
@@ -22,17 +25,22 @@ public class QuemEMaisActivity extends AppCompatActivity {
 
         textPergunta = findViewById(R.id.text_pergunta);
 
-        Button btPessoa1 = findViewById(R.id.bt_pessoa1);
+         btPessoa1 = findViewById(R.id.bt_pessoa1);
 
-        Button btPessoa2 = findViewById(R.id.bt_pessoa2);
+         btPessoa2 = findViewById(R.id.bt_pessoa2);
 
-        Button btProxima = findViewById(R.id.bt_proxima);
+         btProxima = findViewById(R.id.bt_proxima);
 
-        ImageView btVoltar = findViewById(R.id.bt_voltar);
+         btVoltar = findViewById(R.id.bt_voltar);
 
-        ImageView btAvancar = findViewById(R.id.bt_avancar);
+         btAvancar = findViewById(R.id.bt_avancar);
 
 
+            CasalBean casalBean = Global.getInstance().getCasaisBean();
+
+            btPessoa1.setText(casalBean.getPessoa1());
+
+            btPessoa2.setText(casalBean.getPessoa2());
 
     }
 }

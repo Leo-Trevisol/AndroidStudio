@@ -4,22 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.projeto.intentsimplicitas.classes.CasaisBean;
-import com.projeto.intentsimplicitas.classes.Teste;
+import com.projeto.intentsimplicitas.classes.CasalBean;
+import com.projeto.intentsimplicitas.classes.Global;
 import com.projeto.intentsimplicitas.fragments.ModulosFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String CHAVE_EXTRA_CASAL_MAIN_ACTIVITY = "CHAVE_EXTRA_CASAL_MAIN_ACTIVITY";
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,22 +31,17 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView imageCasal = findViewById(R.id.imageCasal);
 
-    if(getIntent().getExtras() != null){
+        CasalBean casalBean = Global.getInstance().getCasaisBean();
 
-        String nome = getIntent().getExtras().getString(InitialActivity.CHAVE_EXTRA_NOME_INITIAL_ACTIVITY);
-        String amor = getIntent().getExtras().getString(InitialActivity.CHAVE_EXTRA_AMOR_INITIAL_ACTIVITY);
-        CasaisBean casalBean = (CasaisBean )getIntent().getExtras().get(InitialActivity.CHAVE_EXTRA_CASAL_INITIAL_ACTIVITY);
+        textCasalTop.setText(casalBean.getPessoa1().toUpperCase() + " e " + casalBean.getPessoa2().toUpperCase());
 
-        textCasalTop.setText(nome.toUpperCase() + " e " + amor.toUpperCase());
-
-        textCasalBottom.setText(nome.toUpperCase() + " e " + amor.toUpperCase());
+        textCasalBottom.setText(casalBean.getPessoa1().toUpperCase() + " e " + casalBean.getPessoa2().toUpperCase());
 
         Drawable drawable = ResourcesCompat.getDrawable(getApplicationContext().getResources(), casalBean.getImagemCasal(), null);
 
         imageCasal.setBackground(drawable);
-    }
 
-    showModulos();
+        showModulos();
 
     }
     private void showModulos(){
@@ -57,5 +52,11 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.container, modulosFragment);
 
         ft.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Toast.makeText(this, "tem certeza?", Toast.LENGTH_SHORT).show();
     }
 }
