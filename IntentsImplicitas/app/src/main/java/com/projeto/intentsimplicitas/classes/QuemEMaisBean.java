@@ -5,11 +5,8 @@ import java.io.Serializable;
 public class QuemEMaisBean implements Serializable {
 
     private int seq;
-
     private String pergunta;
-
     private String nome;
-
     private int escolha;
 
     public QuemEMaisBean(int seq, String pergunta, String nome, int escolha) {
@@ -20,6 +17,15 @@ public class QuemEMaisBean implements Serializable {
     }
 
     public QuemEMaisBean() {
+    }
+
+    public QuemEMaisBean(int seq, String pergunta) {
+        this.seq = seq;
+        this.pergunta = pergunta;
+    }
+
+    public QuemEMaisBean(String pergunta) {
+        this.pergunta = pergunta;
     }
 
     public int getSeq() {

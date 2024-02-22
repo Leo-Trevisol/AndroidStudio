@@ -10,4 +10,6 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color> <!-- Cor da barra de notificações -->
     <color name="colorAccent">#FF4081</color>
+    <color name="opcaoEscolhida">#0DC32B</color>
+    <color name="opcaoNaoEscolhida">#E41B1B</color>
 </resources>

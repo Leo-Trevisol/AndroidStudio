@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.projeto.intentsimplicitas.classes.CasalBean;
 import com.projeto.intentsimplicitas.classes.Global;
+import com.projeto.intentsimplicitas.componentes.CustomAlertDialog;
 import com.projeto.intentsimplicitas.fragments.ModulosFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,7 +57,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        Toast.makeText(this, "tem certeza?", Toast.LENGTH_SHORT).show();
+       // super.onBackPressed();
+        CustomAlertDialog.create(this).setTitle("Atenção").setMessage("Deseja reiniciar o processo?")
+                .setPositiveListener(() ->{
+                    setResult(RESULT_CANCELED);
+                     finish();
+                        }).setNegativeListener(null).show();
+
     }
 }

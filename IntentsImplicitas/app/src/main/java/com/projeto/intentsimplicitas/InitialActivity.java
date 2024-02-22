@@ -1,5 +1,6 @@
 package com.projeto.intentsimplicitas;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -24,10 +25,11 @@ import java.util.List;
 public class InitialActivity extends AppCompatActivity {
 
     public EditText textNome, textAmor;
-
     public Spinner spin;
     CasalBean itemSelecionado = null;
     public static final String CHAVE_EXTRA_CASAL_INITIAL_ACTIVITY = "CHAVE_EXTRA_CASAL_INITIAL_ACTIVITY";
+
+    private final static int REQUEST = 1;
 
     public List<CasalBean> lstCasalBean;
 
@@ -45,34 +47,6 @@ public class InitialActivity extends AppCompatActivity {
 
         lstCasalBean = Global.getInstance().getLstCasaisBean();
 
-        ArrayAdapter<CasalBean> dataAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, lstCasalBean);
-        spin.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.red)));
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        String hint = "Selecione uma opção";
-        dataAdapter.insert(new CasalBean(hint, 0), 0);
-        spin.setAdapter(dataAdapter);
-
-        // Define um listener para tratar a seleção
-        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // Ignora a seleção se o hint for selecionado
-                if (position == 0) {
-                    ((TextView) parentView.getChildAt(0)).setTextColor(getResources().getColor(R.color.gray));
-                    itemSelecionado = null;
-                } else {
-                    // Execute a lógica normalmente para as outras opções
-                    itemSelecionado = (CasalBean) parentView.getItemAtPosition(position);
-                    ((TextView) parentView.getChildAt(0)).setTextColor(getResources().getColor(android.R.color.black));
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Método chamado quando nada está selecionado
-            }
-        });
-
         Button bt = findViewById(R.id.bt_confirm);
 
         bt.setOnClickListener(v -> {
@@ -88,11 +62,55 @@ public class InitialActivity extends AppCompatActivity {
                 Intent i = new Intent(InitialActivity.this, MainActivity.class);
                 i.putExtra(CHAVE_EXTRA_CASAL_INITIAL_ACTIVITY, itemSelecionado);
 
-                startActivity(i);
+                startActivityForResult(i, REQUEST);
             }else{
                 Toast.makeText(InitialActivity.this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
             }
         });
 
+        addAdapter(true);
+
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_CANCELED){
+            itemSelecionado = null;
+            textNome.setText("");
+            textAmor.setText("");
+            addAdapter(false);
+        }
+    }
+
+    public void addAdapter(boolean isHint){
+        ArrayAdapter<CasalBean> dataAdapter = new ArrayAdapter<>(this, R.layout.spinner_item, lstCasalBean);
+        spin.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.red)));
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        if(isHint) {
+            String hint = "Selecione uma opção";
+            dataAdapter.insert(new CasalBean(hint, 0), 0);
+        }
+        spin.setAdapter(dataAdapter);
+        // Define um listener para tratar a seleção
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Ignora a seleção se o hint for selecionado
+                if (position == 0) {
+                    ((TextView) parentView.getChildAt(0)).setTextColor(getResources().getColor(R.color.gray));
+                    itemSelecionado = null;
+                } else {
+                    // Execute a lógica normalmente para as outras opções
+                    itemSelecionado = (CasalBean) parentView.getItemAtPosition(position);
+                    ((TextView) parentView.getChildAt(0)).setTextColor(getResources().getColor(android.R.color.black));
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Método chamado quando nada está selecionado
+            }
+        });
+    }
+
 }
