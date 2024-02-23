@@ -3,6 +3,7 @@ package com.projeto.intentsimplicitas;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.net.wifi.aware.PublishConfig;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -46,10 +47,6 @@ public class QuemEMaisActivity extends AppCompatActivity {
 
          btPessoa2 = findViewById(R.id.bt_pessoa2);
 
-         btVoltar = findViewById(R.id.bt_voltar);
-
-         btAvancar = findViewById(R.id.bt_avancar);
-
         CasalBean casalBean = Global.getInstance().getCasaisBean();
 
 
@@ -59,63 +56,99 @@ public class QuemEMaisActivity extends AppCompatActivity {
 
         btPessoa1.setOnClickListener(v -> {
             responder(1, btPessoa1.getText().toString());
-            btPessoa1.setBackgroundTintList(getResources().getColorStateList(R.color.opcaoEscolhida));
-            btPessoa2.setBackgroundTintList(getResources().getColorStateList(R.color.opcaoNaoEscolhida));
+            updateInformacoes(false, false);
         });
 
         btPessoa2.setText(casalBean.getPessoa2());
 
         btPessoa2.setOnClickListener(v -> {
             responder(2, btPessoa2.getText().toString());
-            btPessoa2.setBackgroundTintList(getResources().getColorStateList(R.color.opcaoEscolhida));
-            btPessoa1.setBackgroundTintList(getResources().getColorStateList(R.color.opcaoNaoEscolhida));
+            updateInformacoes(false,false);
         });
 
         btProxima = findViewById(R.id.bt_proxima);
 
         btProxima.setOnClickListener(v -> {
-            proximaPergunta();
+            updateInformacoes(true, false);
+        });
+
+        btVoltar = findViewById(R.id.bt_voltar);
+
+        btVoltar.setOnClickListener(v -> {
+            updateInformacoes(false, true);
+        });
+
+        btAvancar = findViewById(R.id.bt_avancar);
+
+        btAvancar.setOnClickListener(v -> {
+            updateInformacoes(true, false);
         });
 
         currentPergunta = lstQuemEMaisBean.get(0);
 
-        updateInformacoes();
+        updateInformacoes(false, false);
 
     }
 
     public void responder(int escolha, String nome){
-        lstQuemEMaisBean.get(idxPerguntaTela).setEscolha(escolha);
-        lstQuemEMaisBean.get(idxPerguntaTela).setNome(nome);
+        getCurrentPergunta().setEscolha(escolha);
+        getCurrentPergunta().setNome(nome);
     }
 
-    @SuppressLint("SetTextI18n")
-    public void proximaPergunta(){
-        if(getCurrentPergunta().getEscolha() == 0){
-            Toast.makeText(this, "Responda a pergunta em tela para prosseguir!", Toast.LENGTH_SHORT).show();
-        }else{
-            updateInformacoes();
-        }
-
-    }
     public QuemEMaisBean getCurrentPergunta(){
         return lstQuemEMaisBean.get(idxPerguntaTela);
     }
 
     @SuppressLint({"UseCompatLoadingForColorStateLists", "SetTextI18n"})
-    public void updateInformacoes(){
+    public void updateInformacoes(boolean proximaPergunta, boolean voltarPergunta){
+
         if(getCurrentPergunta().getEscolha() == 0){
-            btPessoa1.setBackgroundTintList(getResources().getColorStateList(R.color.red));
-            btPessoa2.setBackgroundTintList(getResources().getColorStateList(R.color.red));
-        }else if(getCurrentPergunta().getEscolha() == 1){
-            btPessoa1.setBackgroundTintList(getResources().getColorStateList(R.color.opcaoEscolhida));
-            btPessoa2.setBackgroundTintList(getResources().getColorStateList(R.color.red));
+            btProxima.setEnabled(false);
         }else{
-            btPessoa2.setBackgroundTintList(getResources().getColorStateList(R.color.opcaoEscolhida));
-            btPessoa1.setBackgroundTintList(getResources().getColorStateList(R.color.red));
+            btProxima.setEnabled(true);
         }
+
+        if(getCurrentPergunta().getSeq() == 1){
+            btVoltar.setEnabled(false);
+        }else{
+            btVoltar.setEnabled(true);
+        }
+
+        if(getCurrentPergunta().getSeq() == (lstQuemEMaisBean.size() + 1)) {
+            btProxima.setEnabled(false);
+            btAvancar.setEnabled(false);
+        }else{
+            if(getCurrentPergunta().getEscolha() != 0){
+                btProxima.setEnabled(true);
+                btAvancar.setEnabled(true);
+            }
+        }
+
+        int CORES_BOTOES = 0;
+
+        if(getCurrentPergunta().getEscolha() == 1){
+            CORES_BOTOES = 1;
+        }else if(getCurrentPergunta().getEscolha() == 2){
+            CORES_BOTOES = 2;
+        }
+
+        updateCoresBotoes(CORES_BOTOES);
         textPergunta.setText(getCurrentPergunta().getPergunta());
         textPgs.setText("" + (idxPerguntaTela + 1) + "/" + lstQuemEMaisBean.size());
     }
 
+    @SuppressLint("UseCompatLoadingForColorStateLists")
+    public void updateCoresBotoes(int indCor){
 
+        if(indCor == 0){
+            btPessoa1.setBackgroundTintList(getResources().getColorStateList(R.color.red));
+            btPessoa2.setBackgroundTintList(getResources().getColorStateList(R.color.red));
+        } else if (indCor == 1) {
+            btPessoa1.setBackgroundTintList(getResources().getColorStateList(R.color.opcaoEscolhida));
+            btPessoa2.setBackgroundTintList(getResources().getColorStateList(R.color.red));
+        } else if (indCor == 2) {
+            btPessoa1.setBackgroundTintList(getResources().getColorStateList(R.color.red));
+            btPessoa2.setBackgroundTintList(getResources().getColorStateList(R.color.opcaoEscolhida));
+        }
+    }
 }

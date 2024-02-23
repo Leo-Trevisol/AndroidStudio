@@ -93,6 +93,7 @@
             android:src="@drawable/leftarrow"
             android:layout_gravity="center"
             android:padding="5dp"
+            android:backgroundTint="@color/white"
             android:background="@drawable/shape_modulo"
             >
 
@@ -107,7 +108,8 @@
             android:gravity="center"
             app:backgroundTint="@null"
             android:textColor="@color/white"
-            android:background="@drawable/rounded_button_shadow_2"
+            android:background="@drawable/shape_button_2"
+            android:enabled="false"
             android:text="continuar">
 
         </Button>
@@ -119,6 +121,7 @@
             android:background="@drawable/shape_modulo"
             android:padding="5dp"
             android:layout_gravity="center"
+            android:backgroundTint="@color/white"
             android:src="@drawable/rightarrow">
 
         </ImageButton>
