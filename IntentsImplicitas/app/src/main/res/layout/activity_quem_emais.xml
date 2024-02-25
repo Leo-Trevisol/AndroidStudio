@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/bege"
+    android:padding="10dp"
+    android:id="@+id/tela"
     tools:context=".QuemEMaisActivity">
 
    <LinearLayout
@@ -23,9 +25,10 @@
            android:layout_height="wrap_content"
            android:layout_gravity="center"
             style="@style/TextViewPadrao"
+           android:textSize="36sp"
+           android:height="100dp"
            >
        </TextView>
-
 
 
    </LinearLayout>
@@ -41,6 +44,8 @@
         app:layout_constraintBottom_toTopOf="@id/linear3"
         android:orientation="vertical"
         >
+
+
 
         <Button
             android:id="@+id/bt_pessoa1"
@@ -93,8 +98,8 @@
             android:src="@drawable/leftarrow"
             android:layout_gravity="center"
             android:padding="5dp"
-            android:backgroundTint="@color/white"
-            android:background="@drawable/shape_modulo"
+            app:backgroundTint="@null"
+            android:background="@drawable/shape_button_2"
             >
 
         </ImageButton>
@@ -114,17 +119,22 @@
 
         </Button>
 
-        <ImageButton
-            android:id="@+id/bt_avancar"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:background="@drawable/shape_modulo"
-            android:padding="5dp"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/white"
-            android:src="@drawable/rightarrow">
+            <Button
+                android:id="@+id/bt_mostrar_resultados"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                app:backgroundTint="@null"
+                android:textColor="@color/white"
+                android:background="@drawable/shape_button_2"
+                android:enabled="false"
+                android:visibility="gone"
+                android:text="Ver resultado">
 
-        </ImageButton>
+            </Button>
+
 
         </LinearLayout>
 

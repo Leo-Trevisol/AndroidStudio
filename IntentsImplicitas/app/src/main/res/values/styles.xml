@@ -39,4 +39,11 @@
         <item name="android:windowIsFloating">true</item>
     </style>
 
+    <style name="DialogResultadoQuemEMais" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/dialog_quem_e_mais</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="background">@style/TransparentTheme</item>
+    </style>
+
 </resources>

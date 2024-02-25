@@ -1,10 +1,17 @@
 package com.projeto.intentsimplicitas;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.wifi.aware.PublishConfig;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,6 +20,7 @@ import android.widget.Toast;
 import com.projeto.intentsimplicitas.classes.CasalBean;
 import com.projeto.intentsimplicitas.classes.Global;
 import com.projeto.intentsimplicitas.classes.QuemEMaisBean;
+import com.projeto.intentsimplicitas.fragments.ModulosFragment;
 
 import java.util.List;
 
@@ -20,9 +28,9 @@ public class QuemEMaisActivity extends AppCompatActivity {
 
     TextView textPergunta, textPgs;
 
-    Button btPessoa1, btPessoa2, btContinuar, btProxima;
+    Button btPessoa1, btPessoa2, btMostrarResultados, btProxima;
 
-    ImageView btVoltar, btAvancar;
+    ImageView btVoltar;
 
     int idxPerguntaTela = 0;
 
@@ -34,8 +42,18 @@ public class QuemEMaisActivity extends AppCompatActivity {
     @SuppressLint({"UseCompatLoadingForColorStateLists", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quem_emais);
+
+        ActionBar supportActionBar = getSupportActionBar();
+
+        supportActionBar.setTitle("Quem é mais...");
+        supportActionBar.setDisplayHomeAsUpEnabled(true);
+
+        final int mainColor = Global.getInstance().getDefaultColorRed();
+        getWindow().setStatusBarColor(mainColor);
+        supportActionBar.setBackgroundDrawable(new ColorDrawable(mainColor));
 
         textPergunta = findViewById(R.id.text_pergunta);
 
@@ -73,15 +91,18 @@ public class QuemEMaisActivity extends AppCompatActivity {
         });
 
         btVoltar = findViewById(R.id.bt_voltar);
+        btVoltar.setColorFilter(getResources().getColor(R.color.white));
 
         btVoltar.setOnClickListener(v -> {
             updateInformacoes(false, true);
         });
 
-        btAvancar = findViewById(R.id.bt_avancar);
+        btMostrarResultados = findViewById(R.id.bt_mostrar_resultados);
 
-        btAvancar.setOnClickListener(v -> {
-            updateInformacoes(true, false);
+        btMostrarResultados.setOnClickListener(v -> {
+            Global.getInstance().setLstQuemEMaisBean(lstQuemEMaisBean);
+            Intent i = new Intent(this, QuemEMaisResultadoActivity.class);
+            startActivity(i);
         });
 
         currentPergunta = lstQuemEMaisBean.get(0);
@@ -102,6 +123,12 @@ public class QuemEMaisActivity extends AppCompatActivity {
     @SuppressLint({"UseCompatLoadingForColorStateLists", "SetTextI18n"})
     public void updateInformacoes(boolean proximaPergunta, boolean voltarPergunta){
 
+        if(proximaPergunta){
+            idxPerguntaTela++;
+        }else if(voltarPergunta){
+            idxPerguntaTela--;
+        }
+
         if(getCurrentPergunta().getEscolha() == 0){
             btProxima.setEnabled(false);
         }else{
@@ -114,14 +141,19 @@ public class QuemEMaisActivity extends AppCompatActivity {
             btVoltar.setEnabled(true);
         }
 
-        if(getCurrentPergunta().getSeq() == (lstQuemEMaisBean.size() + 1)) {
+        if(getCurrentPergunta().getSeq() == (lstQuemEMaisBean.size())) {
             btProxima.setEnabled(false);
-            btAvancar.setEnabled(false);
+            btProxima.setVisibility(View.GONE);
+            btMostrarResultados.setVisibility(View.VISIBLE);
+            if(getCurrentPergunta().getEscolha() != 0)
+                btMostrarResultados.setEnabled(true);
         }else{
             if(getCurrentPergunta().getEscolha() != 0){
                 btProxima.setEnabled(true);
-                btAvancar.setEnabled(true);
             }
+
+            btProxima.setVisibility(View.VISIBLE);
+            btMostrarResultados.setVisibility(View.GONE);
         }
 
         int CORES_BOTOES = 0;
@@ -151,4 +183,19 @@ public class QuemEMaisActivity extends AppCompatActivity {
             btPessoa2.setBackgroundTintList(getResources().getColorStateList(R.color.opcaoEscolhida));
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        Global.getInstance().dialogReiniciarProcesso(this,"Atenação", "Deseja voltar para o menu principal?", () ->{
+            setResult(RESULT_CANCELED);
+            finish();
+        }, null);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
+
 }

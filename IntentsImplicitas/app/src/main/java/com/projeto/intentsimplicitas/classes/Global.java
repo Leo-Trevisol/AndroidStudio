@@ -1,9 +1,14 @@
 package com.projeto.intentsimplicitas.classes;
 
+import static android.app.Activity.RESULT_CANCELED;
+
+import android.content.Context;
 import android.graphics.Color;
 
 import com.projeto.intentsimplicitas.QuemEMaisActivity;
 import com.projeto.intentsimplicitas.R;
+import com.projeto.intentsimplicitas.componentes.CustomAlertDialog;
+import com.projeto.intentsimplicitas.interfaces.Action0;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,8 +83,16 @@ public class Global {
     }
 
     public List<QuemEMaisBean> getLstQuemEMaisBean() {
-        lstQuemEMaisBean = new ArrayList<>();
 
+        return lstQuemEMaisBean;
+    }
+
+    public void setLstQuemEMaisBean(List<QuemEMaisBean> lstQuemEMaisBean) {
+        this.lstQuemEMaisBean = lstQuemEMaisBean;
+    }
+
+    public void initListaQuemEMais(){
+        lstQuemEMaisBean = new ArrayList<>();
         lstQuemEMaisBean.add(new QuemEMaisBean(1,"Quem é mais Atencioso?"));
         lstQuemEMaisBean.add(new QuemEMaisBean(2,"Quem é mais Bagunceiro?"));
         lstQuemEMaisBean.add(new QuemEMaisBean(3,"Quem é mais Estressado?"));
@@ -92,13 +105,10 @@ public class Global {
         lstQuemEMaisBean.add(new QuemEMaisBean(10,"Quem é mais Indeciso?"));
         lstQuemEMaisBean.add(new QuemEMaisBean(11,"Quem é mais Comilão?"));
         lstQuemEMaisBean.add(new QuemEMaisBean(12,"Quem ama mais?"));
-
-
-
-        return lstQuemEMaisBean;
     }
 
-    public void setLstQuemEMaisBean(List<QuemEMaisBean> lstQuemEMaisBean) {
-        this.lstQuemEMaisBean = lstQuemEMaisBean;
+    public void dialogReiniciarProcesso(Context context, String title, String message, Action0 onConfirmResult, Action0 onCanceledResult){
+        CustomAlertDialog.create(context).setTitle(title).setMessage(message)
+                .setPositiveListener(onConfirmResult).setNegativeListener(onCanceledResult).show();
     }
 }

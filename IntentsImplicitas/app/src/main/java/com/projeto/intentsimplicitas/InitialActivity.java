@@ -68,6 +68,8 @@ public class InitialActivity extends AppCompatActivity {
             }
         });
 
+        Global.getInstance().initListaQuemEMais();
+
         addAdapter(true);
 
     }

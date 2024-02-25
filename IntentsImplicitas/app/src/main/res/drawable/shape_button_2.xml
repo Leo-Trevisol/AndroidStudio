@@ -5,7 +5,7 @@
         <shape>
             <solid android:color="@color/gray" />
             android:shape="rectangle">
-            <corners android:radius="10dp" />
+            <corners android:radius="15dp" />
         </shape>
     </item>
     <!-- Estado padrão -->
@@ -14,7 +14,9 @@
         <shape>
             <solid android:color="@color/red" />
             android:shape="rectangle">
-            <corners android:radius="10dp" />
+            <corners android:radius="15dp" />
         </shape>
     </item>
+
 </selector>
+

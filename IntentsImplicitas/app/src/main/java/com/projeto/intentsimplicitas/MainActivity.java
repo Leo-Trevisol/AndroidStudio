@@ -1,12 +1,18 @@
 package com.projeto.intentsimplicitas;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +30,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_main);
+
+        ActionBar supportActionBar = getSupportActionBar();
+
+        supportActionBar.setTitle("Modulos");
+        supportActionBar.setDisplayHomeAsUpEnabled(true);
+
+        final int mainColor = Global.getInstance().getDefaultColorRed();
+        getWindow().setStatusBarColor(mainColor);
+        supportActionBar.setBackgroundDrawable(new ColorDrawable(mainColor));
 
     TextView textCasalTop = findViewById(R.id.text_casal_top);
 
@@ -57,12 +73,23 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-       // super.onBackPressed();
-        CustomAlertDialog.create(this).setTitle("Atenção").setMessage("Deseja reiniciar o processo?")
-                .setPositiveListener(() ->{
-                    setResult(RESULT_CANCELED);
-                     finish();
-                        }).setNegativeListener(null).show();
+        Global.getInstance().dialogReiniciarProcesso(this, "Atenção", "Deseja reiniciar o processo?", () ->{
+            setResult(RESULT_CANCELED);
+            finish();
+        }, null);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_CANCELED){
+           Global.getInstance().initListaQuemEMais();
+        }
     }
 }

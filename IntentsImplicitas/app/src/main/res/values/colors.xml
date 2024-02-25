@@ -12,4 +12,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="opcaoEscolhida">#0DC32B</color>
     <color name="opcaoNaoEscolhida">#E41B1B</color>
+    <color name="bege">#F6F1F1</color>
 </resources>
