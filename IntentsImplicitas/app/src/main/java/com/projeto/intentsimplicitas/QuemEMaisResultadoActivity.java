@@ -40,9 +40,12 @@ public class QuemEMaisResultadoActivity extends AppCompatActivity {
         btVoltarMenu = findViewById(R.id.bt_voltar_menu);
 
         btVoltarMenu.setOnClickListener(v -> {
-            Global.getInstance().initListaQuemEMais();
+            Global.getInstance().dialogReiniciarProcesso(this, "Atenção", "Deseja voltar para o menu principal", () ->{
+                    Global.getInstance().initListaQuemEMais();
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
+            }, null);
+
         });
 
         lstRecyclerViewQuemEMaisResumo = findViewById(R.id.lst_resumo);

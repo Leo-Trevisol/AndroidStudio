@@ -14,7 +14,7 @@ import com.projeto.intentsimplicitas.QuemEMaisActivity;
 import com.projeto.intentsimplicitas.R;
 import com.projeto.intentsimplicitas.Utils.Modulo;
 import com.projeto.intentsimplicitas.Utils.ModulosAdapter;
-import com.projeto.intentsimplicitas.classes.CasalBean;
+import com.projeto.intentsimplicitas.bean.CasalBean;
 import com.projeto.intentsimplicitas.classes.Global;
 
 import java.util.ArrayList;

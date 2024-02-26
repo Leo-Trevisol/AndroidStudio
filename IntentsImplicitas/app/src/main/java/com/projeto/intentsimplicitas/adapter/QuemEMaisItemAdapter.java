@@ -13,7 +13,7 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.projeto.intentsimplicitas.R;
-import com.projeto.intentsimplicitas.classes.QuemEMaisBean;
+import com.projeto.intentsimplicitas.bean.QuemEMaisBean;
 
 import java.util.List;
 

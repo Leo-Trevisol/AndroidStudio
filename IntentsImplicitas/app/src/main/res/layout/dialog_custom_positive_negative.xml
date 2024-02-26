@@ -62,7 +62,7 @@
                 android:paddingLeft="10dp"
                 android:layout_height="50dp"
                 app:backgroundTint="@null"
-                android:background="@drawable/rounded_button_shadow_1"
+                android:background="@drawable/rounded_button_shadow_white"
                 android:text="NÃO"
                 android:textColor="@color/red" />
             <Button
@@ -72,7 +72,7 @@
                 android:paddingLeft="10dp"
                 android:layout_height="50dp"
                 app:backgroundTint="@null"
-                android:background="@drawable/rounded_button_shadow_1"
+                android:background="@drawable/rounded_button_shadow_white"
                 android:text="SIM"
                 android:textColor="@color/red" />
         </LinearLayout>

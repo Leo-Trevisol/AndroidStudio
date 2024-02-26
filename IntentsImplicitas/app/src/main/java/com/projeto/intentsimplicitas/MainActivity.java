@@ -15,11 +15,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.projeto.intentsimplicitas.classes.CasalBean;
+import com.projeto.intentsimplicitas.bean.CasalBean;
 import com.projeto.intentsimplicitas.classes.Global;
-import com.projeto.intentsimplicitas.componentes.CustomAlertDialog;
 import com.projeto.intentsimplicitas.fragments.ModulosFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,18 +33,18 @@ public class MainActivity extends AppCompatActivity {
 
         ActionBar supportActionBar = getSupportActionBar();
 
-        supportActionBar.setTitle("Modulos");
+        supportActionBar.setTitle("Menu principal");
         supportActionBar.setDisplayHomeAsUpEnabled(true);
 
         final int mainColor = Global.getInstance().getDefaultColorRed();
         getWindow().setStatusBarColor(mainColor);
         supportActionBar.setBackgroundDrawable(new ColorDrawable(mainColor));
 
-    TextView textCasalTop = findViewById(R.id.text_casal_top);
+        TextView textCasalTop = findViewById(R.id.text_casal_top);
 
-    TextView textCasalBottom = findViewById(R.id.text_casal_bottom);
+        TextView textCasalBottom = findViewById(R.id.text_casal_bottom);
 
-    ImageView imageCasal = findViewById(R.id.imageCasal);
+        ImageView imageCasal = findViewById(R.id.imageCasal);
 
         CasalBean casalBean = Global.getInstance().getCasaisBean();
 

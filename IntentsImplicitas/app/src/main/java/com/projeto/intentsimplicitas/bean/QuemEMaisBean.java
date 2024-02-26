@@ -1,4 +1,4 @@
-package com.projeto.intentsimplicitas.classes;
+package com.projeto.intentsimplicitas.bean;
 
 import java.io.Serializable;
 

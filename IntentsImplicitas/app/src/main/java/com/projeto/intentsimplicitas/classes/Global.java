@@ -1,12 +1,11 @@
 package com.projeto.intentsimplicitas.classes;
 
-import static android.app.Activity.RESULT_CANCELED;
-
 import android.content.Context;
 import android.graphics.Color;
 
-import com.projeto.intentsimplicitas.QuemEMaisActivity;
 import com.projeto.intentsimplicitas.R;
+import com.projeto.intentsimplicitas.bean.CasalBean;
+import com.projeto.intentsimplicitas.bean.QuemEMaisBean;
 import com.projeto.intentsimplicitas.componentes.CustomAlertDialog;
 import com.projeto.intentsimplicitas.interfaces.Action0;
 
@@ -52,21 +51,6 @@ public class Global {
     }
 
     public List<CasalBean> getLstCasaisBean() {
-
-        lstCasaisBean = new ArrayList<>();
-
-        lstCasaisBean.add(new CasalBean("Casal de Porcos", R.drawable.porcos));
-        lstCasaisBean.add(new CasalBean("Casal de Cavalos",
-                R.drawable.cavalos));
-        lstCasaisBean.add(new CasalBean("Casal de Corujas",
-                R.drawable.corujas));
-        lstCasaisBean.add(new CasalBean("Casal de Ratos",
-                R.drawable.ratos));
-        lstCasaisBean.add(new CasalBean("Casal de Patos",
-                R.drawable.patos));
-        lstCasaisBean.add(new CasalBean("Casal de Tigres",
-                R.drawable.tigres));
-
         return lstCasaisBean;
     }
 
@@ -89,6 +73,22 @@ public class Global {
 
     public void setLstQuemEMaisBean(List<QuemEMaisBean> lstQuemEMaisBean) {
         this.lstQuemEMaisBean = lstQuemEMaisBean;
+    }
+
+    public void initListaCasaisBean(){
+        lstCasaisBean = new ArrayList<>();
+
+        lstCasaisBean.add(new CasalBean("Casal de Porcos", R.drawable.porcos, R.drawable.porcoicon));
+        lstCasaisBean.add(new CasalBean("Casal de Cavalos",
+                R.drawable.cavalos, R.drawable.cavaloicon));
+        lstCasaisBean.add(new CasalBean("Casal de Corujas",
+                R.drawable.corujas, R.drawable.corujaicon));
+        lstCasaisBean.add(new CasalBean("Casal de Ratos",
+                R.drawable.ratos, R.drawable.ratoicon));
+        lstCasaisBean.add(new CasalBean("Casal de Patos",
+                R.drawable.patos, R.drawable.patoicon));
+        lstCasaisBean.add(new CasalBean("Casal de Tigres",
+                R.drawable.tigres, R.drawable.tigreicon));
     }
 
     public void initListaQuemEMais(){

@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginBottom="50dp"
-            android:background="@drawable/rounded_button_shadow_2"
+            android:background="@drawable/rounded_button_shadow_red"
             android:text="pessoa1"
             android:textColor="@color/white"
             app:backgroundTint="@null">
@@ -65,7 +65,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="50dp"
             app:backgroundTint="@null"
-            android:background="@drawable/rounded_button_shadow_2"
+            android:background="@drawable/rounded_button_shadow_red"
             android:textColor="@color/white"
             android:text="pessoa2">
 
@@ -99,7 +99,7 @@
             android:layout_gravity="center"
             android:padding="5dp"
             app:backgroundTint="@null"
-            android:background="@drawable/shape_button_2"
+            android:background="@drawable/shape_button_enabled_red_gray"
             >
 
         </ImageButton>
@@ -113,7 +113,7 @@
             android:gravity="center"
             app:backgroundTint="@null"
             android:textColor="@color/white"
-            android:background="@drawable/shape_button_2"
+            android:background="@drawable/shape_button_enabled_red_gray"
             android:enabled="false"
             android:text="continuar">
 
@@ -128,7 +128,7 @@
                 android:gravity="center"
                 app:backgroundTint="@null"
                 android:textColor="@color/white"
-                android:background="@drawable/shape_button_2"
+                android:background="@drawable/shape_button_enabled_red_gray"
                 android:enabled="false"
                 android:visibility="gone"
                 android:text="Ver resultado">

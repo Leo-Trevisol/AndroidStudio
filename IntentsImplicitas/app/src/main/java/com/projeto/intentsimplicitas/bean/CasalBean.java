@@ -1,4 +1,4 @@
-package com.projeto.intentsimplicitas.classes;
+package com.projeto.intentsimplicitas.bean;
 
 import java.io.Serializable;
 
@@ -12,20 +12,24 @@ public class CasalBean implements Serializable {
 
     private String pessoa2;
 
-    public CasalBean(String nomeCasal, int imagemCasal, String pessoa1, String pessoa2) {
+    private int iconCasal;
+
+    public CasalBean(String nomeCasal, int imagemCasal, String pessoa1, String pessoa2, int iconCasal) {
         this.nomeCasal = nomeCasal;
         this.imagemCasal = imagemCasal;
         this.pessoa1 = pessoa1;
         this.pessoa2 = pessoa2;
+        this.iconCasal = iconCasal;
     }
 
     public CasalBean() {
 
     }
 
-    public CasalBean(String nomeCasal, int imagemCasal) {
+    public CasalBean(String nomeCasal, int imagemCasal, int iconCasal) {
         this.nomeCasal = nomeCasal;
         this.imagemCasal = imagemCasal;
+        this.iconCasal = iconCasal;
     }
 
     public CasalBean(String pessoa1, String pessoa2) {
@@ -70,4 +74,11 @@ public class CasalBean implements Serializable {
         return  nomeCasal ;
     }
 
+    public int getIconCasal() {
+        return iconCasal;
+    }
+
+    public void setIconCasal(int iconCasal) {
+        this.iconCasal = iconCasal;
+    }
 }

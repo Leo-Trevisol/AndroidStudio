@@ -16,10 +16,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.projeto.intentsimplicitas.classes.CasalBean;
+import com.projeto.intentsimplicitas.bean.CasalBean;
 import com.projeto.intentsimplicitas.classes.Global;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class InitialActivity extends AppCompatActivity {
@@ -45,8 +44,6 @@ public class InitialActivity extends AppCompatActivity {
 
          spin = findViewById(R.id.tipo_spin);
 
-        lstCasalBean = Global.getInstance().getLstCasaisBean();
-
         Button bt = findViewById(R.id.bt_confirm);
 
         bt.setOnClickListener(v -> {
@@ -69,6 +66,9 @@ public class InitialActivity extends AppCompatActivity {
         });
 
         Global.getInstance().initListaQuemEMais();
+        Global.getInstance().initListaCasaisBean();
+
+        lstCasalBean = Global.getInstance().getLstCasaisBean();
 
         addAdapter(true);
 
@@ -91,7 +91,7 @@ public class InitialActivity extends AppCompatActivity {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         if(isHint) {
             String hint = "Selecione uma opção";
-            dataAdapter.insert(new CasalBean(hint, 0), 0);
+            dataAdapter.insert(new CasalBean(hint, 0, 0), 0);
         }
         spin.setAdapter(dataAdapter);
         // Define um listener para tratar a seleção

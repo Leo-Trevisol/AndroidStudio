@@ -3,24 +3,25 @@ package com.projeto.intentsimplicitas;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
-import android.net.wifi.aware.PublishConfig;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.projeto.intentsimplicitas.classes.CasalBean;
+import com.projeto.intentsimplicitas.bean.CasalBean;
 import com.projeto.intentsimplicitas.classes.Global;
-import com.projeto.intentsimplicitas.classes.QuemEMaisBean;
-import com.projeto.intentsimplicitas.fragments.ModulosFragment;
+import com.projeto.intentsimplicitas.bean.QuemEMaisBean;
 
 import java.util.List;
 
@@ -37,6 +38,8 @@ public class QuemEMaisActivity extends AppCompatActivity {
     List<QuemEMaisBean> lstQuemEMaisBean = Global.getInstance().getLstQuemEMaisBean();
 
     QuemEMaisBean currentPergunta;
+
+    CasalBean casalBean = Global.getInstance().getCasalBean();
 
 
     @SuppressLint({"UseCompatLoadingForColorStateLists", "SetTextI18n"})
@@ -56,6 +59,7 @@ public class QuemEMaisActivity extends AppCompatActivity {
         supportActionBar.setBackgroundDrawable(new ColorDrawable(mainColor));
 
         textPergunta = findViewById(R.id.text_pergunta);
+
 
         textPgs = findViewById(R.id.text_pgs);
 
@@ -166,6 +170,10 @@ public class QuemEMaisActivity extends AppCompatActivity {
 
         updateCoresBotoes(CORES_BOTOES);
         textPergunta.setText(getCurrentPergunta().getPergunta());
+
+        Drawable iconCasal = ResourcesCompat.getDrawable(getApplicationContext().getResources(), casalBean.getIconCasal(), null);
+        Drawable iconCasalInv = mirrorDrawable(iconCasal);
+        textPergunta.setCompoundDrawablesWithIntrinsicBounds(iconCasal, null, iconCasalInv, null);
         textPgs.setText("" + (idxPerguntaTela + 1) + "/" + lstQuemEMaisBean.size());
     }
 
@@ -173,14 +181,14 @@ public class QuemEMaisActivity extends AppCompatActivity {
     public void updateCoresBotoes(int indCor){
 
         if(indCor == 0){
-            btPessoa1.setBackgroundTintList(getResources().getColorStateList(R.color.red));
-            btPessoa2.setBackgroundTintList(getResources().getColorStateList(R.color.red));
+            btPessoa1.setBackground(ResourcesCompat.getDrawable(getApplicationContext().getResources(),R.drawable.rounded_button_shadow_red, null));
+            btPessoa2.setBackground(ResourcesCompat.getDrawable(getApplicationContext().getResources(),R.drawable.rounded_button_shadow_red, null));
         } else if (indCor == 1) {
-            btPessoa1.setBackgroundTintList(getResources().getColorStateList(R.color.opcaoEscolhida));
-            btPessoa2.setBackgroundTintList(getResources().getColorStateList(R.color.red));
+            btPessoa1.setBackground(ResourcesCompat.getDrawable(getApplicationContext().getResources(),R.drawable.rounded_button_shadow_3, null));
+            btPessoa2.setBackground(ResourcesCompat.getDrawable(getApplicationContext().getResources(),R.drawable.rounded_button_shadow_red, null));
         } else if (indCor == 2) {
-            btPessoa1.setBackgroundTintList(getResources().getColorStateList(R.color.red));
-            btPessoa2.setBackgroundTintList(getResources().getColorStateList(R.color.opcaoEscolhida));
+            btPessoa1.setBackground(ResourcesCompat.getDrawable(getApplicationContext().getResources(),R.drawable.rounded_button_shadow_red, null));
+            btPessoa2.setBackground(ResourcesCompat.getDrawable(getApplicationContext().getResources(),R.drawable.rounded_button_shadow_3, null));
         }
     }
 
@@ -196,6 +204,22 @@ public class QuemEMaisActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         onBackPressed();
         return super.onOptionsItemSelected(item);
+    }
+
+    private Drawable mirrorDrawable(Drawable drawable) {
+        // Converte o Drawable para Bitmap
+        Bitmap originalBitmap = ((BitmapDrawable) drawable).getBitmap();
+
+        // Cria uma matriz de espelhamento horizontal
+        Matrix matrix = new Matrix();
+        matrix.preScale(-1.0f, 1.0f);
+
+        // Cria um novo bitmap espelhado
+        Bitmap mirroredBitmap = Bitmap.createBitmap(originalBitmap, 0, 0,
+                originalBitmap.getWidth(), originalBitmap.getHeight(), matrix, true);
+
+        // Converte o bitmap espelhado de volta para um Drawable
+        return new BitmapDrawable(getResources(), mirroredBitmap);
     }
 
 }
