@@ -28,3 +28,5 @@ google-services.json
 
 # Android Profiling
 *.hprof
+IntentsImplicitas/build.gradle
+IntentsImplicitas/gradle/wrapper/gradle-wrapper.properties
