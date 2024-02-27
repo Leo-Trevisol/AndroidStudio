@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.projeto.intentsimplicitas.QuemEMaisActivity;
 import com.projeto.intentsimplicitas.R;
+import com.projeto.intentsimplicitas.ReceitasActivity;
 import com.projeto.intentsimplicitas.Utils.Modulo;
 import com.projeto.intentsimplicitas.Utils.ModulosAdapter;
 import com.projeto.intentsimplicitas.bean.CasalBean;
@@ -46,12 +47,18 @@ public class ModulosFragment extends Fragment {
     private void chamarModulos(View view, CasalBean casalBean) {
         final GridView gridView = view.findViewById(R.id.gridView_modulos);
         List<Modulo> lstModulos = new ArrayList<Modulo>();
-        lstModulos.add( new Modulo(R.drawable.question, "Quem é mais...", v -> openQuemEMaisActivity(casalBean)));
+        lstModulos.add( new Modulo(R.drawable.question, "Quem é mais...", v -> openQuemEMaisActivity()));
+        lstModulos.add( new Modulo(R.drawable.receita, "Receitas", v -> openReceitasActivity()));
         gridView.setAdapter(new ModulosAdapter(lstModulos, getActivity()));
     }
 
-    public void openQuemEMaisActivity(CasalBean casalBean){
+    public void openQuemEMaisActivity(){
         Intent i = new Intent(getActivity(), QuemEMaisActivity.class);
+        startActivity(i);
+    }
+
+    public void openReceitasActivity(){
+        Intent i = new Intent(getActivity(), ReceitasActivity.class);
         startActivity(i);
     }
 

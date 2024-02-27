@@ -73,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         Global.getInstance().dialogReiniciarProcesso(this, "Atenção", "Deseja reiniciar o processo?", () ->{
             setResult(RESULT_CANCELED);
-            finish();
+            Intent i = new Intent(this, InitialActivity.class);
+             startActivity(i);
         }, null);
     }
 
