@@ -25,7 +25,7 @@ public class ReceitasActivity extends AppCompatActivity {
 
         ActionBar supportActionBar = getSupportActionBar();
 
-        supportActionBar.setTitle("Menu principal");
+        supportActionBar.setTitle("Receitas");
         supportActionBar.setDisplayHomeAsUpEnabled(true);
 
         final int mainColor = Global.getInstance().getDefaultColorRed();
@@ -38,7 +38,7 @@ public class ReceitasActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Global.getInstance().dialogReiniciarProcesso(this,"Atenação", "Deseja voltar para o menu principal?", () ->{
+        Global.getInstance().dialogReiniciarProcesso(this,"Atenção", "Deseja voltar para o menu principal?", () ->{
             setResult(RESULT_CANCELED);
             finish();
         }, null);

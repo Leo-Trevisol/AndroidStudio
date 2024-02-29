@@ -1,4 +1,4 @@
- package com.projeto.intentsimplicitas.Utils;
+package com.projeto.intentsimplicitas.utils;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -17,7 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 
- public abstract class CustomAsyncTask extends AsyncTask<String, Void, Void> {
+public abstract class CustomAsyncTask extends AsyncTask<String, Void, Void> {
 
     private static final String TAG = CustomAsyncTask.class.getSimpleName();
     // entrada
@@ -37,18 +37,17 @@ import java.net.URL;
     private boolean cancelled, avoidShowInterface, cancelledBytimeoutException;
 
     public CustomAsyncTask(Context context, String jsonEnvio) {
-        this(context, jsonEnvio, 0, null, 0);
+        this(context, jsonEnvio, 0, null);
     }
 
     public CustomAsyncTask(Context context, String jsonEnvio, String messageWait) {
-        this(context, jsonEnvio, 0, messageWait, 0);
+        this(context, jsonEnvio, 0, messageWait);
     }
 
-    public CustomAsyncTask(Context context, String jsonEnvio, int timeoutConnect, String mensagem, int timeoutRead) {
+    public CustomAsyncTask(Context context, String jsonEnvio, int timeoutConnect, String mensagem) {
         this.context = context;
         this.jsonEnvio = jsonEnvio;
         this.timeoutConnect = timeoutConnect;
-        this.timeoutRead = timeoutRead;
         this.menssagemAguarde = mensagem;
         dialog = new ProgressDialog(context);
     }
@@ -57,6 +56,8 @@ import java.net.URL;
         cancelled = false;
         cancelledBytimeoutException = false;
         customOnPostExecute = this::customOnPostExecute;
+
+        timeoutRead = 2000;
 
         boolean ok = false;
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);//Pego a conectividade do contexto o qual o metodo foi chamado
@@ -109,13 +110,17 @@ import java.net.URL;
                 conn.setReadTimeout(timeoutRead);
             }
 
-            conn.setDoOutput(true);
+            if(jsonEnvio != null && !jsonEnvio.isEmpty())
+                conn.setDoOutput(true);
+
             conn.setRequestProperty("Content-Type", "application/json; charset=utf-8");
 
-            wr = new OutputStreamWriter(conn.getOutputStream());
+            if(jsonEnvio != null && !jsonEnvio.isEmpty()) {
+                wr = new OutputStreamWriter(conn.getOutputStream());
 
-            wr.write(jsonEnvio);
-            wr.flush();
+                wr.write(jsonEnvio);
+                wr.flush();
+            }
 
             boolean error = false;
 
@@ -126,7 +131,6 @@ import java.net.URL;
              */
             if (conn.getResponseCode() == 200) {
                 is = conn.getInputStream();
-
             } else {
                 error = true;
                 is = conn.getErrorStream();
@@ -150,37 +154,7 @@ import java.net.URL;
                 conteudoRetorno = sbResp.toString();
             }
         } catch (SocketTimeoutException Tex) {
-            Log.e(TAG, "erro na execução", Tex);
-            responseCode = 500;
-            retornoErro = "Não foi possível concluir o processo, pois o timeout de execução foi atingido. Por favor tente novamente.";
-
-
-//        Rotina estava deixando as notas comstatus 8 na Besni é necessario reavaliar.
-//        catch (SocketTimeoutException Tex){
-//            cancelledBytimeoutException = true;
-//
-//            ((Activity) context).runOnUiThread(() -> {
-//                CustomAlertDialog.create(context)
-//                	.setTitle("Atenção")
-//                	.setMessage("Não foi possível concluir o processo. Deseja tentar novamente?")
-//                    .setPositiveListener(() -> {
-//                        CustomAsyncTask task = new CustomAsyncTask(context, jsonEnvio) {
-//
-//                            @Override
-//                            public void customOnPostExecute() {
-//                                conteudoRetorno = this.getConteudoRetorno();
-//                                retornoErro = this.getRetornoErro();
-//                                responseCode = this.getResponseCode();
-//
-//                                customOnPostExecute.call();
-//                            }
-//                        };
-//                        task.execute(urls[0]);
-//
-//                    })
-//                    .setNegativeListener(null).show();
-//            });
-
+            cancelledBytimeoutException = true;
         } catch (Exception ex) {
             Log.e(TAG, "erro na execução", ex);
             retornoErro = ex.getMessage();

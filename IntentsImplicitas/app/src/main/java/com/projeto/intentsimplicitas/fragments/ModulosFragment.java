@@ -13,10 +13,8 @@ import androidx.fragment.app.Fragment;
 import com.projeto.intentsimplicitas.QuemEMaisActivity;
 import com.projeto.intentsimplicitas.R;
 import com.projeto.intentsimplicitas.ReceitasActivity;
-import com.projeto.intentsimplicitas.Utils.Modulo;
-import com.projeto.intentsimplicitas.Utils.ModulosAdapter;
-import com.projeto.intentsimplicitas.bean.CasalBean;
-import com.projeto.intentsimplicitas.classes.Global;
+import com.projeto.intentsimplicitas.utils.Modulo;
+import com.projeto.intentsimplicitas.utils.ModulosAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

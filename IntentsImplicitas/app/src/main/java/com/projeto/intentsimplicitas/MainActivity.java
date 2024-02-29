@@ -16,9 +16,12 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.projeto.intentsimplicitas.bean.CasalBean;
+import com.projeto.intentsimplicitas.bean.ReceitasResponseBean;
 import com.projeto.intentsimplicitas.classes.Global;
 import com.projeto.intentsimplicitas.fragments.ModulosFragment;
+import com.projeto.intentsimplicitas.utils.CustomAsyncTask;
 
 public class MainActivity extends AppCompatActivity {
 

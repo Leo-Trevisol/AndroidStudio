@@ -3,38 +3,30 @@ package com.projeto.intentsimplicitas.bean;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class ReceitasResponseBean implements Serializable {
-    @SerializedName("id")
-    private Integer id;
-    @SerializedName("receita")
-    private String receita;
-    @SerializedName("modo_preparo")
-    private String modoPreparo;
-    @SerializedName("link_imagem")
-    private String linkImagem;
-    @SerializedName("tipo")
-    private String tipo;
-    @SerializedName("ingredientesBase")
-    private IngredientesBaseBean ingredientesBase;
 
-    public ReceitasResponseBean(Integer id, String receita, String modoPreparo, String linkImagem, String tipo, IngredientesBaseBean ingredientesBase) {
-        this.id = id;
-        this.receita = receita;
-        this.modoPreparo = modoPreparo;
-        this.linkImagem = linkImagem;
-        this.tipo = tipo;
-        this.ingredientesBase = ingredientesBase;
-    }
+    private static final long serialVersionUID = 1L;
+    private int id;
+    private String receita;
+    private String ingredientes;
+    private String modo_preparo;
+    private String link_imagem;
+    private String tipo;
+    private String created_at;
+    private List<IngredientesBaseBean> IngredientesBase;
 
     public ReceitasResponseBean() {
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -46,20 +38,28 @@ public class ReceitasResponseBean implements Serializable {
         this.receita = receita;
     }
 
-    public String getModoPreparo() {
-        return modoPreparo;
+    public String getIngredientes() {
+        return ingredientes;
     }
 
-    public void setModoPreparo(String modoPreparo) {
-        this.modoPreparo = modoPreparo;
+    public void setIngredientes(String ingredientes) {
+        this.ingredientes = ingredientes;
     }
 
-    public String getLinkImagem() {
-        return linkImagem;
+    public String getModo_preparo() {
+        return modo_preparo;
     }
 
-    public void setLinkImagem(String linkImagem) {
-        this.linkImagem = linkImagem;
+    public void setModo_preparo(String modo_preparo) {
+        this.modo_preparo = modo_preparo;
+    }
+
+    public String getLink_imagem() {
+        return link_imagem;
+    }
+
+    public void setLink_imagem(String link_imagem) {
+        this.link_imagem = link_imagem;
     }
 
     public String getTipo() {
@@ -70,23 +70,33 @@ public class ReceitasResponseBean implements Serializable {
         this.tipo = tipo;
     }
 
-    public IngredientesBaseBean getIngredientesBase() {
-        return ingredientesBase;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public void setIngredientesBase(IngredientesBaseBean ingredientesBase) {
-        this.ingredientesBase = ingredientesBase;
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public List<IngredientesBaseBean> getIngredientesBase() {
+        return IngredientesBase;
+    }
+
+    public void setIngredientesBase(List<IngredientesBaseBean> ingredientesBase) {
+        IngredientesBase = ingredientesBase;
     }
 
     @Override
     public String toString() {
-        return "ReceitasBean{" +
+        return "ReceitasResponseBean{" +
                 "id=" + id +
                 ", receita='" + receita + '\'' +
-                ", modoPreparo='" + modoPreparo + '\'' +
-                ", linkImagem='" + linkImagem + '\'' +
+                ", ingredientes='" + ingredientes + '\'' +
+                ", modo_preparo='" + modo_preparo + '\'' +
+                ", link_imagem='" + link_imagem + '\'' +
                 ", tipo='" + tipo + '\'' +
-                ", ingredientesBase=" + ingredientesBase +
+                ", created_at='" + created_at + '\'' +
+                ", IngredientesBase=" + IngredientesBase +
                 '}';
     }
 }

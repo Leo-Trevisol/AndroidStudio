@@ -1,22 +1,26 @@
-package com.projeto.intentsimplicitas.Utils;
+package com.projeto.intentsimplicitas.utils;
 
 import android.view.View;
 
-public class Modulo {
+public class ModuloReceitas {
+
     private final String title;
     private int resourceId;
     private View.OnClickListener onClickListener;
     private boolean enabled;
 
-    public Modulo(int resourceId, String title, View.OnClickListener listener) {
-        this(resourceId, true, title, listener);
+    private Integer receitaId;
+
+    public ModuloReceitas(int resourceId, String title, View.OnClickListener listener, Integer receitaId) {
+        this(resourceId, true, title, listener, receitaId );
     }
 
-    public Modulo(int resourceId, boolean enabled, String title, View.OnClickListener listener) {
+    public ModuloReceitas(int resourceId, boolean enabled, String title, View.OnClickListener listener, Integer receitaId) {
         onClickListener = listener;
         this.resourceId = resourceId;
         this.enabled = enabled;
         this.title = title;
+        this.receitaId = receitaId;
     }
 
     public View.OnClickListener getOnClickListener() {

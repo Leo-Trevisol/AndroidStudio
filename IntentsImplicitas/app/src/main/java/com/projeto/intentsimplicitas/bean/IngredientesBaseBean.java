@@ -3,30 +3,24 @@ package com.projeto.intentsimplicitas.bean;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 public class IngredientesBaseBean implements Serializable {
-    @SerializedName("id")
-    private Integer id;
-    @SerializedName("nomesIngrediente")
+    private int id;
     private List<String> nomesIngrediente;
-    @SerializedName("receita_id")
-    private Integer receitaId;
+    private int receita_id;
+    private String created_at;
 
-    public IngredientesBaseBean(Integer id, List<String> nomesIngrediente, Integer receitaId) {
-        this.id = id;
-        this.nomesIngrediente = nomesIngrediente;
-        this.receitaId = receitaId;
-    }
 
     public IngredientesBaseBean() {
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -38,20 +32,19 @@ public class IngredientesBaseBean implements Serializable {
         this.nomesIngrediente = nomesIngrediente;
     }
 
-    public Integer getReceitaId() {
-        return receitaId;
+    public int getReceita_id() {
+        return receita_id;
     }
 
-    public void setReceitaId(Integer receitaId) {
-        this.receitaId = receitaId;
+    public void setReceita_id(int receita_id) {
+        this.receita_id = receita_id;
     }
 
-    @Override
-    public String toString() {
-        return "IngredientesBaseBean{" +
-                "id=" + id +
-                ", nomesIngrediente=" + nomesIngrediente +
-                ", receitaId=" + receitaId +
-                '}';
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 }
