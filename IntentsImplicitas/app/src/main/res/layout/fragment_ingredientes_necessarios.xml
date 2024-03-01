@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="0dp"
+            android:layout_weight="0.5"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:text="Ingredientes necessários"
+                android:layout_weight="3"
+                android:textSize="16sp"
+                android:padding="5dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:background="@color/black"
+                android:textColor="@color/white" />
+
+                <ImageView
+                    android:id="@+id/pop_up_receitas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/exclamation"
+                    android:layout_margin="3dp">
+
+                </ImageView>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+    <ExpandableListView
+        android:id="@+id/expandableListView_ingredientes_necessarios"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="#0f0"
+        android:groupIndicator="@null"
+        android:outlineAmbientShadowColor="#0f0"
+        android:outlineSpotShadowColor="#0f0" />
+
+</LinearLayout>

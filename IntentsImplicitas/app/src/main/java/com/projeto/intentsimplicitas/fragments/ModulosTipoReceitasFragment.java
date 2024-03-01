@@ -1,9 +1,6 @@
 package com.projeto.intentsimplicitas.fragments;
 
 import static com.projeto.intentsimplicitas.fragments.ReceitasFragment.TIPO_RECEITA_KEY;
-import static com.projeto.intentsimplicitas.fragments.ReceitasFragment.agriDoceKey;
-import static com.projeto.intentsimplicitas.fragments.ReceitasFragment.doceKey;
-import static com.projeto.intentsimplicitas.fragments.ReceitasFragment.salgadoKey;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -21,12 +18,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.projeto.intentsimplicitas.R;
 import com.projeto.intentsimplicitas.bean.ReceitasResponseBean;
-import com.projeto.intentsimplicitas.classes.Global;
 import com.projeto.intentsimplicitas.utils.CustomAsyncTask;
-import com.projeto.intentsimplicitas.utils.Modulo;
 import com.projeto.intentsimplicitas.utils.ModuloReceitas;
-import com.projeto.intentsimplicitas.utils.ModulosAdapter;
-import com.projeto.intentsimplicitas.utils.ModulosReceitasAdapter;
+import com.projeto.intentsimplicitas.adapter.ModulosReceitasAdapter;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -35,9 +29,9 @@ import java.util.List;
 
 public class ModulosTipoReceitasFragment extends Fragment {
 
-    public static final String CHAVE_EXTRA_CASAL_MODULOS_FRAGMENT = "CHAVE_EXTRA_CASAL_MODULOS_FRAGMENT";
-
     private List<ReceitasResponseBean> receitasResponseBean;
+    public static final String RECEITA_ESCOLHIDA_KEY = "RECEITA_ESCOLHIDA_KEY";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,6 +72,8 @@ public class ModulosTipoReceitasFragment extends Fragment {
                         receitasResponseBean = lstReceitas;
                         chamarModulosReceitas(getView());
                     }
+                }else{
+                    Toast.makeText(getActivity(), "Rceitas indisponiveis no momento...", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -90,13 +86,24 @@ public class ModulosTipoReceitasFragment extends Fragment {
         final GridView gridView = view.findViewById(R.id.gridView_modulos);
         List<ModuloReceitas> lstModulos = new ArrayList<ModuloReceitas>();
         for(ReceitasResponseBean receita : receitasResponseBean){
-            lstModulos.add(new ModuloReceitas(R.drawable.salgado, receita.getReceita(), v->chamarReceita(), receita.getId()));
+            lstModulos.add(new ModuloReceitas(R.drawable.salgado, receita.getReceita(), v->chamarReceita(receita), receita.getId()));
         }
         gridView.setAdapter(new ModulosReceitasAdapter(lstModulos, getActivity()));
     }
 
-    private void chamarReceita(){
+    private void chamarReceita(ReceitasResponseBean receitaEscolhida){
 
+        ReceitaEscolhidaFragment receitasFragment = new ReceitaEscolhidaFragment();
+
+        Bundle b = new Bundle();
+        b.putSerializable(RECEITA_ESCOLHIDA_KEY, receitaEscolhida);
+        receitasFragment.setArguments(b);
+
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+
+        ft.replace(R.id.container, receitasFragment);
+
+        ft.commit();
     }
 
 

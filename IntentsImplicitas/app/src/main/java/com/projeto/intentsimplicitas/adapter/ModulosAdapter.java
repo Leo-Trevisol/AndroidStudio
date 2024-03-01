@@ -1,4 +1,4 @@
-package com.projeto.intentsimplicitas.utils;
+package com.projeto.intentsimplicitas.adapter;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -10,15 +10,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.projeto.intentsimplicitas.R;
+import com.projeto.intentsimplicitas.utils.Modulo;
 
 import java.util.List;
 
-public class ModulosReceitasAdapter extends BaseAdapter {
+public class ModulosAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
     private final Context context;
-    private List<ModuloReceitas> modulos;
+    private List<Modulo> modulos;
 
-    public ModulosReceitasAdapter(List<ModuloReceitas> modulos, Context context) {
+    public ModulosAdapter(List<Modulo> modulos, Context context) {
         this.modulos = modulos;
         inflater = LayoutInflater.from(context);
         this.context = context;
@@ -45,7 +46,7 @@ public class ModulosReceitasAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.modulos_layout, parent, false);
         }
 
-        final ModuloReceitas modulo = modulos.get(i);
+        final Modulo modulo = modulos.get(i);
 
         final int mainColor = modulo.isEnabled() ? context.getResources().getColor(R.color.red) : context.getResources().getColor(R.color.colorC);
         final ImageView imageViewModule = convertView.findViewById(R.id.imageView_module);

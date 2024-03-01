@@ -22,7 +22,7 @@
     </style>
 
     <style name="RoundedDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:windowBackground">@drawable/background_dialog_input_numerico</item>
+        <item name="android:windowBackground">@drawable/rounded_button_shadow_white</item>
     </style>
 
     <style name="TransparentTheme" parent="Theme.AppCompat.Light.DarkActionBar">
