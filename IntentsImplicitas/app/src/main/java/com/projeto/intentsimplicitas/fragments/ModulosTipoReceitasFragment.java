@@ -18,7 +18,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.projeto.intentsimplicitas.R;
 import com.projeto.intentsimplicitas.bean.ReceitasResponseBean;
-import com.projeto.intentsimplicitas.utils.CustomAsyncTask;
+import com.projeto.intentsimplicitas.async.CustomAsyncTask;
 import com.projeto.intentsimplicitas.utils.ModuloReceitas;
 import com.projeto.intentsimplicitas.adapter.ModulosReceitasAdapter;
 

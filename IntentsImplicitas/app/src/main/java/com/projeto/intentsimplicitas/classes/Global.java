@@ -6,6 +6,7 @@ import android.graphics.Color;
 import com.projeto.intentsimplicitas.R;
 import com.projeto.intentsimplicitas.bean.CasalBean;
 import com.projeto.intentsimplicitas.bean.QuemEMaisBean;
+import com.projeto.intentsimplicitas.bean.ReceitasResponseBean;
 import com.projeto.intentsimplicitas.componentes.CustomAlertDialog;
 import com.projeto.intentsimplicitas.interfaces.Action0;
 
@@ -20,6 +21,8 @@ public class Global {
     private List<CasalBean> lstCasaisBean;
 
     private List<QuemEMaisBean> lstQuemEMaisBean;
+
+
 
     private static final String DEFAULT_COLOR = "#B80E0E";
 
@@ -111,4 +114,6 @@ public class Global {
         CustomAlertDialog.create(context).setTitle(title).setMessage(message)
                 .setPositiveListener(onConfirmResult).setNegativeListener(onCanceledResult).show();
     }
+
+
 }

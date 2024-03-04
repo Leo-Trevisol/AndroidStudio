@@ -1,4 +1,4 @@
-package com.projeto.intentsimplicitas.utils;
+package com.projeto.intentsimplicitas.async;
 
 import android.app.ProgressDialog;
 import android.content.Context;
