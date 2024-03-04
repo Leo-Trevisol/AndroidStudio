@@ -1,5 +1,8 @@
 package com.projeto.intentsimplicitas.exec;
 
+import android.content.Context;
+
+import com.projeto.intentsimplicitas.async.ReceitasAsyncTask;
 import com.projeto.intentsimplicitas.bean.ReceitasResponseBean;
 
 import java.io.Serializable;
@@ -24,10 +27,16 @@ public class ReceitasExec implements Serializable {
         instance = null;
     }
 
-    public boolean isReceitasSalgadasAtivas(){
+    public boolean isReceitasSalgadasAtivas(Context context){
 
+        ReceitasAsyncTask.start(context, "", "https://gold-anemone-wig.cyclic.app/receitas/tipo/salgado", ReceitasResponseBean.class,
+                "Consultando receitas", (response) -> {
 
+            if(response != null){
 
+            }
+
+        }).execute();
 
         return false;
     }

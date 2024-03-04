@@ -1,13 +1,14 @@
 package com.projeto.intentsimplicitas.bean;
 
 import com.google.gson.annotations.SerializedName;
+import com.projeto.intentsimplicitas.response.ResponseAbstract;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ReceitasResponseBean implements Serializable {
+public class ReceitasResponseBean extends ResponseAbstract implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private int id;

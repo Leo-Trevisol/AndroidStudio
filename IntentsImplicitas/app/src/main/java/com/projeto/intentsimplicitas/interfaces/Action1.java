@@ -1,6 +1,6 @@
 package com.projeto.intentsimplicitas.interfaces;
 
-public interface Action1<T1> {
-    void call(T1 t1);
+public interface Action1<T> {
+    void call(T t1);
 }
 

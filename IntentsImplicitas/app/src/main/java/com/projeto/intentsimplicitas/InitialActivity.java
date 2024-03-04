@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.projeto.intentsimplicitas.bean.CasalBean;
 import com.projeto.intentsimplicitas.classes.Global;
+import com.projeto.intentsimplicitas.exec.ReceitasExec;
 
 import java.util.List;
 
@@ -45,6 +46,8 @@ public class InitialActivity extends AppCompatActivity {
          spin = findViewById(R.id.tipo_spin);
 
         Button bt = findViewById(R.id.bt_confirm);
+
+        ReceitasExec.getInstance().isReceitasSalgadasAtivas(this);
 
         bt.setOnClickListener(v -> {
             if((itemSelecionado != null && itemSelecionado.getNomeCasal() != null ) && (!textNome.getText().toString().isBlank()

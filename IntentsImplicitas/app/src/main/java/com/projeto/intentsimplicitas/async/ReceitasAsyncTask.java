@@ -20,7 +20,7 @@ public class ReceitasAsyncTask<T extends ResponseAbstract> extends CustomAsyncTa
     private WeakReference<Context> contextReference;
 
     public static <R, T extends ResponseAbstract> ReceitasAsyncTask<T> start(Context context, R request, String signature, Class<T> tClass, String messageWait, Action1<T> onCompletionListener) {
-        final Gson g =  new Gson();
+        final Gson g =  Utils.getGson();
         final String json = g.toJson(request, request.getClass());
 
         return new ReceitasAsyncTask<T>(context, json, tClass, signature, messageWait, onCompletionListener);
