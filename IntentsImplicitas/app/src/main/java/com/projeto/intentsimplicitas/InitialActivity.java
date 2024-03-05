@@ -1,12 +1,17 @@
 package com.projeto.intentsimplicitas;
 
+import static com.projeto.intentsimplicitas.fragments.ReceitasFragment.salgadoKey;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,12 +26,15 @@ import com.projeto.intentsimplicitas.classes.Global;
 import com.projeto.intentsimplicitas.exec.ReceitasExec;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class InitialActivity extends AppCompatActivity {
 
     public EditText textNome, textAmor;
     public Spinner spin;
     CasalBean itemSelecionado = null;
+
     public static final String CHAVE_EXTRA_CASAL_INITIAL_ACTIVITY = "CHAVE_EXTRA_CASAL_INITIAL_ACTIVITY";
 
     private final static int REQUEST = 1;
@@ -47,7 +55,6 @@ public class InitialActivity extends AppCompatActivity {
 
         Button bt = findViewById(R.id.bt_confirm);
 
-        ReceitasExec.getInstance().isReceitasSalgadasAtivas(this);
 
         bt.setOnClickListener(v -> {
             if((itemSelecionado != null && itemSelecionado.getNomeCasal() != null ) && (!textNome.getText().toString().isBlank()

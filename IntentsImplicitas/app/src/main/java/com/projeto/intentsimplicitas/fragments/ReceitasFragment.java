@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.projeto.intentsimplicitas.R;
+import com.projeto.intentsimplicitas.exec.ReceitasExec;
 import com.projeto.intentsimplicitas.utils.Modulo;
 import com.projeto.intentsimplicitas.adapter.ModulosAdapter;
 
@@ -44,9 +45,12 @@ public class ReceitasFragment extends Fragment {
     private void chamarModulos(View view) {
         final GridView gridView = view.findViewById(R.id.gridView_modulos);
         List<Modulo> lstModulos = new ArrayList<Modulo>();
-        lstModulos.add(new Modulo(R.drawable.salgado, "Salgado", v -> openReceitas(salgadoKey)));
-        lstModulos.add(new Modulo(R.drawable.doce, "Doce", v -> openReceitas(doceKey)));
-        lstModulos.add(new Modulo(R.drawable.receita, "Agridoce", v -> openReceitas(agriDoceKey)));
+        lstModulos.add(new Modulo(R.drawable.salgado, ReceitasExec.getInstance().isReceitasAtivas(getContext(),
+                salgadoKey), "Salgado", v -> openReceitas(salgadoKey)));
+        lstModulos.add(new Modulo(R.drawable.doce, ReceitasExec.getInstance().isReceitasAtivas(getContext(),
+                doceKey),"Doce", v -> openReceitas(doceKey)));
+        lstModulos.add(new Modulo(R.drawable.receita, ReceitasExec.getInstance().isReceitasAtivas(getContext(),
+                agriDoceKey), "Agridoce", v -> openReceitas(agriDoceKey)));
         gridView.setAdapter(new ModulosAdapter(lstModulos, getActivity()));
     }
 

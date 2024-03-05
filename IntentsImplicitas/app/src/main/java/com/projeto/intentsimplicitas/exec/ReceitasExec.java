@@ -1,11 +1,21 @@
 package com.projeto.intentsimplicitas.exec;
 
-import android.content.Context;
+import static com.projeto.intentsimplicitas.fragments.ReceitasFragment.agriDoceKey;
+import static com.projeto.intentsimplicitas.fragments.ReceitasFragment.doceKey;
+import static com.projeto.intentsimplicitas.fragments.ReceitasFragment.salgadoKey;
 
+import android.content.Context;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.projeto.intentsimplicitas.async.CustomAsyncTask;
 import com.projeto.intentsimplicitas.async.ReceitasAsyncTask;
 import com.projeto.intentsimplicitas.bean.ReceitasResponseBean;
+import com.projeto.intentsimplicitas.utils.Utils;
 
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.List;
 
 public class ReceitasExec implements Serializable {
@@ -27,18 +37,20 @@ public class ReceitasExec implements Serializable {
         instance = null;
     }
 
-    public boolean isReceitasSalgadasAtivas(Context context){
+    public boolean isReceitasAtivas(Context context, String tipoReceita){
 
-        ReceitasAsyncTask.start(context, "", "https://gold-anemone-wig.cyclic.app/receitas/tipo/salgado", ReceitasResponseBean.class,
-                "Consultando receitas", (response) -> {
+        chamarReceitas(context,  tipoReceita.split("Key")[0]);
 
-            if(response != null){
-
-            }
-
-        }).execute();
+        if(tipoReceita.equals(salgadoKey)){
+            return Utils.isEmpty(getLstReceitasSalgadas());
+        }else if (tipoReceita.equals(doceKey)){
+            return Utils.isEmpty(getLstReceitasDoces());
+        }else if (tipoReceita.equals(agriDoceKey)){
+            return Utils.isEmpty(getLstReceitasAgridoces());
+        }
 
         return false;
+
     }
 
     public List<ReceitasResponseBean> getLstReceitasSalgadas() {
@@ -63,6 +75,35 @@ public class ReceitasExec implements Serializable {
 
     public void setLstReceitasAgridoces(List<ReceitasResponseBean> lstReceitasAgridoces) {
         this.lstReceitasAgridoces = lstReceitasAgridoces;
+    }
+
+    public void chamarReceitas(Context context, String tipoReceita){
+        CustomAsyncTask task = new CustomAsyncTask(context, "", 20000, "Aguarde a consulta..." ) {
+
+            @Override
+            public void customOnPostExecute() {
+
+                if (this.getConteudoRetorno() != null && !this.getConteudoRetorno().trim().isEmpty()) {
+
+                    Gson gson = new Gson();
+
+                    Type receitaListType = new TypeToken<List<ReceitasResponseBean>>() {}.getType();
+                    List<ReceitasResponseBean> lstReceitas = gson.fromJson(this.getConteudoRetorno(), receitaListType);
+                    if(lstReceitas != null){
+                        if(tipoReceita.equals(salgadoKey.split("Key")[0])){
+                            lstReceitasSalgadas = lstReceitas;
+                        } else if (tipoReceita.equals(doceKey.split("Key")[0])) {
+                            lstReceitasDoces = lstReceitas;
+                        }else if (tipoReceita.equals(agriDoceKey.split("Key")[0])) {
+                            lstReceitasAgridoces = lstReceitas;
+                        }
+                    }
+                }
+            }
+
+        };
+
+        task.execute("https://gold-anemone-wig.cyclic.app/receitas/tipo/"+tipoReceita);
     }
 
 
