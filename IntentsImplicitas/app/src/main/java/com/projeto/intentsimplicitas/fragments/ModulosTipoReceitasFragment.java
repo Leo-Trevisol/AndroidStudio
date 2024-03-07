@@ -19,8 +19,10 @@ import com.google.gson.reflect.TypeToken;
 import com.projeto.intentsimplicitas.R;
 import com.projeto.intentsimplicitas.bean.ReceitasResponseBean;
 import com.projeto.intentsimplicitas.async.CustomAsyncTask;
+import com.projeto.intentsimplicitas.exec.ReceitasExec;
 import com.projeto.intentsimplicitas.utils.ModuloReceitas;
 import com.projeto.intentsimplicitas.adapter.ModulosReceitasAdapter;
+import com.projeto.intentsimplicitas.utils.Utils;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -32,6 +34,7 @@ public class ModulosTipoReceitasFragment extends Fragment {
     private List<ReceitasResponseBean> receitasResponseBean;
     public static final String RECEITA_ESCOLHIDA_KEY = "RECEITA_ESCOLHIDA_KEY";
 
+    public static final String RECEITA_ESCOLHIDA_FRAGMENT_BACKSTACK = "RECEITA_ESCOLHIDA_FRAGMENT_BACKSTACK";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,46 +43,19 @@ public class ModulosTipoReceitasFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_modulos, container, false);
 
         if(getArguments() != null) {
-            String tipoReceita = (String) getArguments().get(TIPO_RECEITA_KEY);
+            receitasResponseBean = (List<ReceitasResponseBean>) getArguments().get(TIPO_RECEITA_KEY);
 
-            tipoReceita = tipoReceita.split("Key")[0];
-
-                getLstReceitas(tipoReceita.toLowerCase());
+            if(!Utils.isEmpty(receitasResponseBean))
+                 chamarModulosReceitas(view);
         }
 
         return view;
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-    }
-
-    public void getLstReceitas(String tipoReceita){
-
-        CustomAsyncTask task = new CustomAsyncTask(getActivity(), "") {
-
-            @Override
-            public void customOnPostExecute() {
-
-                if (this.getConteudoRetorno() != null && !this.getConteudoRetorno().trim().isEmpty()) {
-
-                    Gson gson = new Gson();
-
-                    Type receitaListType = new TypeToken<List<ReceitasResponseBean>>() {}.getType();
-                    List<ReceitasResponseBean> lstReceitas = gson.fromJson(this.getConteudoRetorno(), receitaListType);
-                    if(lstReceitas != null){
-                        receitasResponseBean = lstReceitas;
-                        chamarModulosReceitas(getView());
-                    }
-                }else{
-                    Toast.makeText(getActivity(), "Rceitas indisponiveis no momento...", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-        };
-
-        task.execute("https://gold-anemone-wig.cyclic.app/receitas/tipo/"+tipoReceita);
     }
 
     private void chamarModulosReceitas(View view) {
@@ -103,9 +79,11 @@ public class ModulosTipoReceitasFragment extends Fragment {
 
         ft.replace(R.id.container, receitasFragment);
 
+        ft.addToBackStack(RECEITA_ESCOLHIDA_FRAGMENT_BACKSTACK);
+
         ft.commit();
     }
 
 
-    }
+}
 

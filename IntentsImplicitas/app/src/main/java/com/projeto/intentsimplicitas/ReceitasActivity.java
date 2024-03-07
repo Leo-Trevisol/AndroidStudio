@@ -17,6 +17,8 @@ import com.projeto.intentsimplicitas.fragments.ReceitasFragment;
 
 public class ReceitasActivity extends AppCompatActivity {
 
+    final static String RECEITAS_FRAGMENT_BACKSTACK = "RECEITAS_FRAGMENT_BACKSTACK";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +40,16 @@ public class ReceitasActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Global.getInstance().dialogReiniciarProcesso(this,"Atenção", "Deseja voltar para o menu principal?", () ->{
-            setResult(RESULT_CANCELED);
-            finish();
-        }, null);
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+        if (count == 1) {
+            Global.getInstance().dialogReiniciarProcesso(this,"Atenção", "Deseja voltar para o menu principal?", () ->{
+                setResult(RESULT_CANCELED);
+                finish();
+            }, null);
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
+
     }
 
     @Override
@@ -56,6 +64,7 @@ public class ReceitasActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
         ft.replace(R.id.container, receitasFragment);
+        ft.addToBackStack(RECEITAS_FRAGMENT_BACKSTACK);
 
         ft.commit();
     }

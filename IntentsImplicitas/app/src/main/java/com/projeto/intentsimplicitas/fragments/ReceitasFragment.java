@@ -10,21 +10,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.projeto.intentsimplicitas.R;
+import com.projeto.intentsimplicitas.bean.ReceitasResponseBean;
 import com.projeto.intentsimplicitas.exec.ReceitasExec;
 import com.projeto.intentsimplicitas.utils.Modulo;
 import com.projeto.intentsimplicitas.adapter.ModulosAdapter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReceitasFragment extends Fragment {
 
     public static final String TIPO_RECEITA_KEY = "TIPO_RECEITA_KEY";
-    public static final String salgadoKey = "salgadoKey";
-    public static final String doceKey = "doceKey";
-    public static final String agriDoceKey = "agriDoceKey";
+
+    final static String MODULOS_TIPO_RECEITAS_FRAGMENT_BACKSTACK = "MODULOS_TIPO_RECEITAS_FRAGMENT_BACKSTACK";
+    public static final String salgadoKey = "salgado";
+    public static final String doceKey = "doce";
+    public static final String agriDoceKey = "agridoce";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,28 +50,41 @@ public class ReceitasFragment extends Fragment {
     private void chamarModulos(View view) {
         final GridView gridView = view.findViewById(R.id.gridView_modulos);
         List<Modulo> lstModulos = new ArrayList<Modulo>();
-        lstModulos.add(new Modulo(R.drawable.salgado, ReceitasExec.getInstance().isReceitasAtivas(getContext(),
-                salgadoKey), "Salgado", v -> openReceitas(salgadoKey)));
-        lstModulos.add(new Modulo(R.drawable.doce, ReceitasExec.getInstance().isReceitasAtivas(getContext(),
-                doceKey),"Doce", v -> openReceitas(doceKey)));
-        lstModulos.add(new Modulo(R.drawable.receita, ReceitasExec.getInstance().isReceitasAtivas(getContext(),
-                agriDoceKey), "Agridoce", v -> openReceitas(agriDoceKey)));
+        lstModulos.add(new Modulo(R.drawable.salgado,  "Salgado", v -> openReceitas(salgadoKey)));
+        lstModulos.add(new Modulo(R.drawable.doce, "Doce", v -> openReceitas(doceKey)));
+        lstModulos.add(new Modulo(R.drawable.receita,  "Agridoce", v -> openReceitas(agriDoceKey)));
         gridView.setAdapter(new ModulosAdapter(lstModulos, getActivity()));
     }
 
     public void openReceitas(String key) {
 
-        ModulosTipoReceitasFragment receitasFragment = new ModulosTipoReceitasFragment();
+        ReceitasExec.getInstance().getLstReceitasTipos(getActivity(),key, ()-> {
 
-        Bundle b = new Bundle();
-        b.putString(TIPO_RECEITA_KEY, key);
-        receitasFragment.setArguments(b);
+           List<ReceitasResponseBean> receitasResponseBean = ReceitasExec.getInstance().
+                    getLstTipoReceitasInformadas(key);
 
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+            ModulosTipoReceitasFragment receitasFragment = new ModulosTipoReceitasFragment();
 
-        ft.replace(R.id.container, receitasFragment);
+            Bundle b = new Bundle();
+            b.putSerializable(TIPO_RECEITA_KEY, (Serializable) receitasResponseBean);
+            receitasFragment.setArguments(b);
 
-        ft.commit();
+            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+
+            ft.replace(R.id.container, receitasFragment);
+
+            ft.addToBackStack(MODULOS_TIPO_RECEITAS_FRAGMENT_BACKSTACK);
+
+            ft.commit();
+
+        }, ()->{
+
+            Toast.makeText(getContext(), "Receitas tipo " + key +" indisponiveis no momento...", Toast.LENGTH_SHORT).show();
+
+
+        });
+
+
 
     }
 
