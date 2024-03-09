@@ -1,6 +1,7 @@
 package com.projeto.intentsimplicitas.fragments;
 
 import static com.projeto.intentsimplicitas.fragments.ReceitasFragment.TIPO_RECEITA_KEY;
+import static com.projeto.intentsimplicitas.fragments.ReceitasFragment.salgadoKey;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -62,7 +63,8 @@ public class ModulosTipoReceitasFragment extends Fragment {
         final GridView gridView = view.findViewById(R.id.gridView_modulos);
         List<ModuloReceitas> lstModulos = new ArrayList<ModuloReceitas>();
         for(ReceitasResponseBean receita : receitasResponseBean){
-            lstModulos.add(new ModuloReceitas(R.drawable.salgado, receita.getReceita(), v->chamarReceita(receita), receita.getId()));
+            lstModulos.add(new ModuloReceitas(receita.getTipo().equals(salgadoKey) ? R.drawable.salgado
+                    : R.drawable.doce, receita.getReceita(), v->chamarReceita(receita), receita.getId()));
         }
         gridView.setAdapter(new ModulosReceitasAdapter(lstModulos, getActivity()));
     }

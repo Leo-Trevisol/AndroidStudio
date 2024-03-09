@@ -8,7 +8,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,31 +16,43 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.projeto.intentsimplicitas.R;
-import com.projeto.intentsimplicitas.adapter.IngredientesReceitasAdapter;
-import com.projeto.intentsimplicitas.adapter.QuemEMaisItemAdapter;
+import com.projeto.intentsimplicitas.adapter.IngredientesPopUpReceitasAdapter;
+import com.projeto.intentsimplicitas.adapter.IngredientesReceitaAdapter;
 import com.projeto.intentsimplicitas.bean.ReceitasResponseBean;
-import com.projeto.intentsimplicitas.classes.Global;
-import com.projeto.intentsimplicitas.view.CustomEdgeEffectFactory;
+import com.projeto.intentsimplicitas.utils.Utils;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class ReceitaEscolhidaFragment extends Fragment {
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final Context contextThemeWrapper = new android.view.ContextThemeWrapper(getActivity(), R.style.Base_Theme_IntentsImplicitas);
 
         View view = inflater.inflate(R.layout.fragment_receita_escolhida, container, false);
 
+
+
         if(getArguments() != null) {
             ReceitasResponseBean tipoReceita = (ReceitasResponseBean) getArguments().get(RECEITA_ESCOLHIDA_KEY);
             if(tipoReceita != null){
                 initComponents(view, tipoReceita);
+
+                ExpandableListView expandableListView = view.findViewById(R.id.expandableListView_ingredientes_necessarios);
+
+                List<String> nomeIngredientesGroup = tipoReceita.getIngredientesBase().get(0).getNomesIngrediente();
+
+                List<String>  lstIngredientesSeparadosChild = Utils.splitString(tipoReceita.getIngredientes());
+
+                IngredientesReceitaAdapter adapter = new IngredientesReceitaAdapter(getContext(), nomeIngredientesGroup, lstIngredientesSeparadosChild);
+                expandableListView.setAdapter(adapter);
             }
         }
 
@@ -55,11 +66,9 @@ public class ReceitaEscolhidaFragment extends Fragment {
 
     private void initComponents(View view, ReceitasResponseBean receitaEscolhida) {
         TextView textReceita = view.findViewById(R.id.text_nome_receita);
-     //   TextView textIngredientes = view.findViewById(R.id.text_ingredientes_receita);
         TextView textModoPreparo = view.findViewById(R.id.text_modo_preparo_receita);
 
         textReceita.setText(receitaEscolhida.getReceita());
-     //   textIngredientes.setText(formatarIngredientesHtml(receitaEscolhida.getIngredientes()));
         textModoPreparo.setText(receitaEscolhida.getModo_preparo());
 
         ImageView popUp = view.findViewById(R.id.pop_up_receitas);
@@ -95,7 +104,7 @@ public class ReceitaEscolhidaFragment extends Fragment {
 
         String[] lstIngredientesSeparados = receitaEscolhida.split(",");
 
-        IngredientesReceitasAdapter adapter = new IngredientesReceitasAdapter(getContext(), Arrays.asList(lstIngredientesSeparados));
+        IngredientesPopUpReceitasAdapter adapter = new IngredientesPopUpReceitasAdapter(getContext(), Arrays.asList(lstIngredientesSeparados));
 
         LstIngredientes.setLayoutManager(new LinearLayoutManager(getContext()));
         LstIngredientes.setAdapter(adapter);
@@ -105,4 +114,5 @@ public class ReceitaEscolhidaFragment extends Fragment {
         final AlertDialog dialog = builder.create();
         dialog.show();
     }
+
 }

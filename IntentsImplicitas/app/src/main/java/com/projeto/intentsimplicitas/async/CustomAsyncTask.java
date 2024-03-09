@@ -57,7 +57,7 @@ public abstract class CustomAsyncTask extends AsyncTask<String, Void, Void> {
         cancelledBytimeoutException = false;
         customOnPostExecute = this::customOnPostExecute;
 
-        timeoutRead = 2000;
+        timeoutRead = 5000;
 
         boolean ok = false;
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);//Pego a conectividade do contexto o qual o metodo foi chamado

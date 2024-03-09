@@ -1,28 +1,24 @@
 package com.projeto.intentsimplicitas.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.projeto.intentsimplicitas.R;
-import com.projeto.intentsimplicitas.bean.QuemEMaisBean;
 
 import java.util.List;
 
-public class IngredientesReceitasAdapter extends RecyclerView.Adapter<IngredientesReceitasAdapter.ViewHolder> {
+public class IngredientesPopUpReceitasAdapter extends RecyclerView.Adapter<IngredientesPopUpReceitasAdapter.ViewHolder> {
 
     private Context context;
     private List<String> lstIngredientes;
 
-    public IngredientesReceitasAdapter(Context context, List<String> lstIngredientes) {
+    public IngredientesPopUpReceitasAdapter(Context context, List<String> lstIngredientes) {
         this.context = context;
         this.lstIngredientes = lstIngredientes;
     }
@@ -49,7 +45,6 @@ public class IngredientesReceitasAdapter extends RecyclerView.Adapter<Ingredient
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textView;
-        private ImageView imageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,8 +53,10 @@ public class IngredientesReceitasAdapter extends RecyclerView.Adapter<Ingredient
 
         public void bind(String ingrediente, int position) {
 
+            if(position == 0){
+                ingrediente = " " + ingrediente;
+            }
 
-            // Adiciona o texto do ingrediente
             textView.setText(ingrediente);
         }
     }

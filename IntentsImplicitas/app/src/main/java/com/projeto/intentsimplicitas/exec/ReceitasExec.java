@@ -69,7 +69,7 @@ public class ReceitasExec implements Serializable {
             return;
         }
 
-        CustomAsyncTask task = new CustomAsyncTask(context, "") {
+        CustomAsyncTask task = new CustomAsyncTask(context, "", 10000, "Aguarde, por favor...") {
 
             @Override
             public void customOnPostExecute() {
