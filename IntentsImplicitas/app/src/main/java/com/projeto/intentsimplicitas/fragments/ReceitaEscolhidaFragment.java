@@ -36,7 +36,7 @@ public class ReceitaEscolhidaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final Context contextThemeWrapper = new android.view.ContextThemeWrapper(getActivity(), R.style.Base_Theme_IntentsImplicitas);
 
-        View view = inflater.inflate(R.layout.fragment_receita_escolhida, container, false);
+        View view = inflater.inflate(R.layout.receita, container, false);
 
 
 

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/text_nome_receita"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="receita"
+        android:gravity="center"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/linear1"
+
+        >
+    </TextView>
+
+
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_nome_receita"
+        app:layout_constraintBottom_toTopOf="@id/linear2"
+        >
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="0dp"
+            android:layout_weight="0.5"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:text="Ingredientes necessários"
+                    android:layout_weight="3"
+                    android:textSize="16sp"
+                    android:padding="5dp"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:background="@color/black"
+                    android:textColor="@color/white" />
+
+                <ImageView
+                    android:id="@+id/pop_up_receitas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/exclamation"
+                    android:layout_margin="3dp">
+
+                </ImageView>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear1"
+       app:layout_constraintBottom_toTopOf="@id/text_modo_preparo_receita"
+        >
+
+        <ExpandableListView
+            android:id="@+id/expandableListView_ingredientes_necessarios"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="#0f0"
+            android:groupIndicator="@null"
+            android:outlineAmbientShadowColor="#0f0"
+            android:outlineSpotShadowColor="#0f0" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/text_modo_preparo_receita"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="modo de preparo"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear2"
+        app:layout_constraintBottom_toBottomOf="parent">
+    </TextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
