@@ -32,20 +32,20 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ReceitaEscolhidaFragment extends Fragment {
+
+    ExpandableListView expandableListView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final Context contextThemeWrapper = new android.view.ContextThemeWrapper(getActivity(), R.style.Base_Theme_IntentsImplicitas);
 
         View view = inflater.inflate(R.layout.receita, container, false);
 
-
-
         if(getArguments() != null) {
             ReceitasResponseBean tipoReceita = (ReceitasResponseBean) getArguments().get(RECEITA_ESCOLHIDA_KEY);
             if(tipoReceita != null){
                 initComponents(view, tipoReceita);
 
-                ExpandableListView expandableListView = view.findViewById(R.id.expandableListView_ingredientes_necessarios);
+                 expandableListView = view.findViewById(R.id.expandableListView_ingredientes_necessarios);
 
                 List<String> nomeIngredientesGroup = tipoReceita.getIngredientesBase().get(0).getNomesIngrediente();
 
@@ -77,22 +77,25 @@ public class ReceitaEscolhidaFragment extends Fragment {
             chamarPopUpReceitas(receitaEscolhida.getIngredientes());
         });
 
-    }
+        ImageView eyeOpen = view.findViewById(R.id.eye_open);
 
-    private String formatarIngredientesHtml(String receitaEscolhida){
-        StringBuilder ingredientesFormatados = new StringBuilder();
+        ImageView eyeClosed = view.findViewById(R.id.eye_closed);
 
-        ingredientesFormatados.append("<ul>");
+        LinearLayout layoutExpand = view.findViewById(R.id.linear2);
 
-        String[] lstIngredientesSeparados = receitaEscolhida.split(",");
+        eyeOpen.setOnClickListener(v -> {
+            eyeClosed.setVisibility(View.VISIBLE);
+            eyeOpen.setVisibility(View.GONE);
+            layoutExpand.setVisibility(View.GONE);
 
-        for(String ingrediente : lstIngredientesSeparados){
-            ingredientesFormatados.append("<li>" + ingrediente + "</li>");
-        }
+        });
 
-        ingredientesFormatados.append("</ul>");
+        eyeClosed.setOnClickListener(v -> {
+            eyeOpen.setVisibility(View.VISIBLE);
+            eyeClosed.setVisibility(View.GONE);
+            layoutExpand.setVisibility(View.VISIBLE);
+        });
 
-        return Html.fromHtml(ingredientesFormatados.toString()).toString();
     }
 
     public void chamarPopUpReceitas(String receitaEscolhida){
