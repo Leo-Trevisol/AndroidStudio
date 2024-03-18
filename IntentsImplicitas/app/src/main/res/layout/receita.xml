@@ -38,14 +38,6 @@
                 android:orientation="horizontal"
                 >
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:orientation="horizontal">
-
-
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -53,7 +45,8 @@
                     android:text="Ingredientes necessários"
                     android:textSize="20sp"
                     android:padding="5dp"
-                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="start"
                     android:fontFamily="sans-serif-smallcaps"
                     android:background="@color/black"
                     android:textColor="@color/white" />
@@ -69,10 +62,9 @@
 
                 </ImageView>
 
-                </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/eye_open"
+                    android:id="@+id/eye_open_ingredientes"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:src="@drawable/visible"
@@ -81,7 +73,7 @@
                 </ImageView>
 
                 <ImageView
-                    android:id="@+id/eye_closed"
+                    android:id="@+id/eye_closed_ingredientes"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:src="@drawable/hidden"
@@ -112,12 +104,79 @@
             android:layout_height="match_parent"
             android:cacheColorHint="#0f0"
             android:groupIndicator="@null"
-
             android:outlineAmbientShadowColor="#0f0"
             android:outlineSpotShadowColor="#0f0" />
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linear3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="0dp"
+            android:layout_weight="0.5"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:text="Modo de preparo"
+                        android:textSize="20sp"
+                        android:padding="5dp"
+
+                        android:gravity="start"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-smallcaps"
+                        android:background="@color/black"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/eye_open_preparo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/visible"
+                    android:layout_margin="3dp">
+
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/eye_closed_preparo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/hidden"
+                    android:layout_margin="3dp"
+                    android:visibility="gone"
+                    >
+
+                </ImageView>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/text_modo_preparo_receita"

@@ -7,17 +7,25 @@ import static com.projeto.intentsimplicitas.fragments.ReceitasFragment.salgadoKe
 import android.content.Context;
 import android.widget.Toast;
 
+import androidx.core.content.res.ResourcesCompat;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.projeto.intentsimplicitas.R;
 import com.projeto.intentsimplicitas.async.CustomAsyncTask;
 import com.projeto.intentsimplicitas.async.ReceitasAsyncTask;
 import com.projeto.intentsimplicitas.bean.ReceitasResponseBean;
 import com.projeto.intentsimplicitas.interfaces.Action0;
 import com.projeto.intentsimplicitas.utils.Utils;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.io.InputStream;
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Scanner;
 
 public class ReceitasExec implements Serializable {
 
@@ -69,6 +77,8 @@ public class ReceitasExec implements Serializable {
             return;
         }
 
+
+
         CustomAsyncTask task = new CustomAsyncTask(context, "", 10000, "Aguarde, por favor...") {
 
             @Override
@@ -96,6 +106,35 @@ public class ReceitasExec implements Serializable {
 
         task.execute("https://gold-anemone-wig.cyclic.app/receitas/tipo/"+tipoReceita);
     }
+
+    public void getLstReceitasTipos(Context context, String tipoReceita, Action0 onCompletionListener) {
+
+        if (isLstReceitasCarregadas(tipoReceita)) {
+            onCompletionListener.call();
+            return;
+        }
+
+        InputStream inputStream = context.getResources().openRawResource(R.raw.receitas_doces);
+
+        String jsonString = new Scanner(inputStream).useDelimiter("\\A").next();
+
+        try {
+            JSONArray jsonArray = new JSONArray(jsonString);
+
+
+//            if (!Utils.isEmpty(lstReceitas)) {
+//
+//                addItensListaReceitas(tipoReceita, lstReceitas);
+//
+//                onCompletionListener.call();
+//            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     public void addItensListaReceitas(String tipoReceita, List<ReceitasResponseBean> lstReceitas){
 

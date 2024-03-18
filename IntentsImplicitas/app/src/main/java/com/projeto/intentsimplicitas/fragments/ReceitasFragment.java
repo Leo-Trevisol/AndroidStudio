@@ -58,7 +58,7 @@ public class ReceitasFragment extends Fragment {
 
     public void openReceitas(String key) {
 
-        ReceitasExec.getInstance().getLstReceitasTipos(getActivity(),key, ()-> {
+        ReceitasExec.getInstance().getLstReceitasTipos(getContext(), key, ()-> {
 
            List<ReceitasResponseBean> receitasResponseBean = ReceitasExec.getInstance().
                     getLstTipoReceitasInformadas(key);
@@ -76,11 +76,6 @@ public class ReceitasFragment extends Fragment {
             ft.addToBackStack(MODULOS_TIPO_RECEITAS_FRAGMENT_BACKSTACK);
 
             ft.commit();
-
-        }, ()->{
-
-            Toast.makeText(getContext(), "Receitas tipo " + key +" indisponiveis no momento...", Toast.LENGTH_SHORT).show();
-
 
         });
 

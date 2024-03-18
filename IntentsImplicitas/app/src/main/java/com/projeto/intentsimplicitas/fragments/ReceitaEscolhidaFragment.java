@@ -27,6 +27,8 @@ import com.projeto.intentsimplicitas.adapter.IngredientesReceitaAdapter;
 import com.projeto.intentsimplicitas.bean.ReceitasResponseBean;
 import com.projeto.intentsimplicitas.utils.Utils;
 
+import org.w3c.dom.Text;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -77,23 +79,40 @@ public class ReceitaEscolhidaFragment extends Fragment {
             chamarPopUpReceitas(receitaEscolhida.getIngredientes());
         });
 
-        ImageView eyeOpen = view.findViewById(R.id.eye_open);
+        ImageView eyeOpenIngredientes = view.findViewById(R.id.eye_open_ingredientes);
 
-        ImageView eyeClosed = view.findViewById(R.id.eye_closed);
+        ImageView eyeClosedIngredientes = view.findViewById(R.id.eye_closed_ingredientes);
+
+        ImageView eyeOpenPreparo = view.findViewById(R.id.eye_open_preparo);
+
+        ImageView eyeClosedPreparo = view.findViewById(R.id.eye_closed_preparo);
 
         LinearLayout layoutExpand = view.findViewById(R.id.linear2);
 
-        eyeOpen.setOnClickListener(v -> {
-            eyeClosed.setVisibility(View.VISIBLE);
-            eyeOpen.setVisibility(View.GONE);
+        eyeOpenIngredientes.setOnClickListener(v -> {
+            eyeClosedIngredientes.setVisibility(View.VISIBLE);
+            eyeOpenIngredientes.setVisibility(View.GONE);
             layoutExpand.setVisibility(View.GONE);
 
         });
 
-        eyeClosed.setOnClickListener(v -> {
-            eyeOpen.setVisibility(View.VISIBLE);
-            eyeClosed.setVisibility(View.GONE);
+        eyeClosedIngredientes.setOnClickListener(v -> {
+            eyeOpenIngredientes.setVisibility(View.VISIBLE);
+            eyeClosedIngredientes.setVisibility(View.GONE);
             layoutExpand.setVisibility(View.VISIBLE);
+        });
+
+        eyeOpenPreparo.setOnClickListener(v -> {
+            eyeClosedPreparo.setVisibility(View.VISIBLE);
+            eyeOpenPreparo.setVisibility(View.GONE);
+            textModoPreparo.setVisibility(View.INVISIBLE);
+
+        });
+
+        eyeClosedPreparo.setOnClickListener(v -> {
+            eyeOpenPreparo.setVisibility(View.VISIBLE);
+            eyeClosedPreparo.setVisibility(View.GONE);
+            textModoPreparo.setVisibility(View.VISIBLE);
         });
 
     }
