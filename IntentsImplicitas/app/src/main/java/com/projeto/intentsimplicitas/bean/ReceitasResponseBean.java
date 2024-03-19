@@ -1,5 +1,6 @@
 package com.projeto.intentsimplicitas.bean;
 
+import com.google.gson.JsonArray;
 import com.google.gson.annotations.SerializedName;
 import com.projeto.intentsimplicitas.response.ResponseAbstract;
 
@@ -80,6 +81,10 @@ public class ReceitasResponseBean extends ResponseAbstract implements Serializab
     }
 
     public List<IngredientesBaseBean> getIngredientesBase() {
+
+        if(IngredientesBase == null)
+            IngredientesBase = new ArrayList<>();
+
         return IngredientesBase;
     }
 
@@ -100,4 +105,7 @@ public class ReceitasResponseBean extends ResponseAbstract implements Serializab
                 ", IngredientesBase=" + IngredientesBase +
                 '}';
     }
+
+
+
 }

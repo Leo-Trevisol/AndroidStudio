@@ -3,6 +3,7 @@ package com.projeto.intentsimplicitas.bean;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +26,10 @@ public class IngredientesBaseBean implements Serializable {
     }
 
     public List<String> getNomesIngrediente() {
+
+        if(nomesIngrediente == null)
+            nomesIngrediente = new ArrayList<>();
+
         return nomesIngrediente;
     }
 
