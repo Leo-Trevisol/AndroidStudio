@@ -3,9 +3,8 @@
     "id": 2,
     "receita": "Bolo de Cenoura",
     "ingredientes": "3 cenouras médias, 3 ovos, 1 xícara de óleo, 2 xícaras de farinha de trigo, 2 xícaras de açúcar, 1 colher de sopa de fermento em pó",
-    "modo_preparo": "1. Descasque e corte as cenouras em pedaços. 2. No liquidificador, bata as cenouras, os ovos e o óleo até obter uma mistura homogênea. 3. Em uma tigela, adicione a farinha de trigo, o açúcar e o fermento. Misture bem. 4. Acrescente a mistura líquida do liquidificador à tigela e mexa até incorporar todos os ingredientes. 5. Despeje a massa em uma forma untada e leve ao forno preaquecido a 180°C por aproximadamente 40 minutos ou até dourar. 6. Retire do forno, deixe esfriar e desenforme.",
-    "link_imagem": "https://i.ytimg.com/vi/bBqEpmMuMhk/maxresdefault.jpg",
-    "tipo": "doce",
+    "modo_preparo": "1- Descasque e corte as cenouras em pedaços. 2- No liquidificador, bata as cenouras, os ovos e o óleo até obter uma mistura homogênea. 3- Em uma tigela, adicione a farinha de trigo, o açúcar e o fermento. Misture bem. 4- Acrescente a mistura líquida do liquidificador à tigela e mexa até incorporar todos os ingredientes. 5- Despeje a massa em uma forma untada e leve ao forno preaquecido a 180°C por aproximadamente 40 minutos ou até dourar. 6- Retire do forno, deixe esfriar e desenforme.","link_imagem": "https://i.ytimg.com/vi/bBqEpmMuMhk/maxresdefault.jpg",
+    "tipo": "Doces",
     "created_at": "2023-12-31T01:54:46.940Z",
     "IngredientesBase": [
       {
@@ -23,8 +22,7 @@
     "id": 4,
     "receita": "Pudim de Leite Condensado",
     "ingredientes": "1 lata de leite condensado, 2 latas de leite (use a lata de leite condensado vazia para medir), 3 ovos, açúcar para caramelizar a forma",
-    "modo_preparo": "1. Comece preparando a calda de caramelo: em uma panela, derreta açúcar até obter um caramelo dourado. Despeje o caramelo em uma forma de pudim e espalhe bem, cobrindo todo o fundo da forma. 2. No liquidificador, bata o leite condensado, o leite e os ovos até obter uma mistura homogênea. 3. Despeje essa mistura na forma caramelizada. 4. Cubra a forma com papel-alumínio e leve ao forno preaquecido a 180°C em banho-maria por aproximadamente 1 hora ou até que o pudim esteja firme. 5. Deixe esfriar, desenforme e sirva.",
-    "link_imagem": "https://braziliankitchenabroad.com/wp-content/uploads/2020/09/pudim-brazilian-flan-20-500x500.jpg",
+    "modo_preparo": "1- Comece preparando a calda de caramelo: em uma panela, derreta açúcar até obter um caramelo dourado. Despeje o caramelo em uma forma de pudim e espalhe bem, cobrindo todo o fundo da forma. 2- No liquidificador, bata o leite condensado, o leite e os ovos até obter uma mistura homogênea. 3- Despeje essa mistura na forma caramelizada. 4- Cubra a forma com papel-alumínio e leve ao forno preaquecido a 180°C em banho-maria por aproximadamente 1 hora ou até que o pudim esteja firme. 5- Deixe esfriar, desenforme e sirva.",    "link_imagem": "https://braziliankitchenabroad.com/wp-content/uploads/2020/09/pudim-brazilian-flan-20-500x500.jpg",
     "tipo": "doce",
     "created_at": "2023-12-31T01:55:03.627Z",
     "IngredientesBase": [
@@ -45,8 +43,7 @@
     "id": 7,
     "receita": "Sorvete de Chocolate",
     "ingredientes": "2 xícaras de creme de leite, 1 xícara de leite condensado, 1/2 xícara de cacau em pó, 1 colher de chá de essência de baunilha, 100g de chocolate meio amargo picado",
-    "modo_preparo": "1. Em uma panela, aqueça o creme de leite, o leite condensado, o cacau em pó e a essência de baunilha até que fique homogêneo e quente. 2. Retire do fogo e adicione o chocolate meio amargo picado. Mexa até que o chocolate derreta completamente. 3. Deixe a mistura esfriar. 4. Despeje a mistura em uma sorveteira e siga as instruções do fabricante. Se você não tiver uma sorveteira, coloque a mistura em um recipiente hermético e leve ao freezer, mexendo a cada 30 minutos até que o sorvete esteja firme. 5. Sirva o sorvete de chocolate.",
-    "link_imagem": "https://static.vecteezy.com/system/resources/previews/000/764/869/non_2x/chocolate-and-vanilla-ice-cream-photo.jpg",
+    "modo_preparo": "1- Em uma panela, aqueça o creme de leite, o leite condensado, o cacau em pó e a essência de baunilha até que fique homogêneo e quente. 2- Retire do fogo e adicione o chocolate meio amargo picado. Mexa até que o chocolate derreta completamente. 3- Deixe a mistura esfriar. 4- Despeje a mistura em uma sorveteira e siga as instruções do fabricante. Se você não tiver uma sorveteira, coloque a mistura em um recipiente hermético e leve ao freezer, mexendo a cada 30 minutos até que o sorvete esteja firme. 5- Sirva o sorvete de chocolate.",    "link_imagem": "https://static.vecteezy.com/system/resources/previews/000/764/869/non_2x/chocolate-and-vanilla-ice-cream-photo.jpg",
     "tipo": "doce",
     "created_at": "2023-12-31T01:55:19.649Z",
     "IngredientesBase": [
@@ -68,8 +65,7 @@
     "id": 9,
     "receita": "Torta de Maçã",
     "ingredientes": "3 maçãs descascadas e fatiadas, 1 colher de chá de canela em pó, 1/2 xícara de açúcar, 1 xícara de farinha de trigo, 1/2 xícara de manteiga derretida, 1 xícara de açúcar mascavo, 2 ovos, 1 colher de chá de essência de baunilha, 1 colher de chá de fermento em pó, 1/2 colher de chá de sal",
-    "modo_preparo": "1. Em uma tigela, misture as maçãs fatiadas, a canela em pó e 1/2 xícara de açúcar. Reserve. 2. Em outra tigela, misture a farinha de trigo, a manteiga derretida, o açúcar mascavo, os ovos, a essência de baunilha, o fermento em pó e o sal até obter uma massa homogênea. 3. Em uma forma untada, coloque metade da massa. 4. Disponha a mistura de maçã por cima. 5. Cubra com o restante da massa. 6. Leve ao forno preaquecido a 180°C por cerca de 40 minutos ou até que a torta esteja dourada e firme. 7. Deixe esfriar antes de cortar e servir.",
-    "link_imagem": "https://i.pinimg.com/736x/9a/e3/1b/9ae31b7959026c375c82e8bce99b56eb.jpg",
+    "modo_preparo": "1- Em uma tigela, misture as maçãs fatiadas, a canela em pó e 1/2 xícara de açúcar. Reserve. 2- Em outra tigela, misture a farinha de trigo, a manteiga derretida, o açúcar mascavo, os ovos, a essência de baunilha, o fermento em pó e o sal até obter uma massa homogênea. 3- Em uma forma untada, coloque metade da massa. 4- Disponha a mistura de maçã por cima. 5- Cubra com o restante da massa. 6- Leve ao forno preaquecido a 180°C por cerca de 40 minutos ou até que a torta esteja dourada e firme. 7- Deixe esfriar antes de cortar e servir.",    "link_imagem": "https://i.pinimg.com/736x/9a/e3/1b/9ae31b7959026c375c82e8bce99b56eb.jpg",
     "tipo": "doce",
     "created_at": "2023-12-31T01:55:30.467Z",
     "IngredientesBase": [
@@ -96,8 +92,7 @@
     "id": 11,
     "receita": "Bolo de Chocolate",
     "ingredientes": "2 xícaras de farinha de trigo, 1 xícara de cacau em pó, 1 1/2 colher de chá de fermento em pó, 1 1/2 colher de chá de bicarbonato de sódio, 1/2 colher de chá de sal, 2 xícaras de açúcar, 3 ovos, 2 colheres de chá de essência de baunilha, 1 xícara de buttermilk (ou 1 xícara de leite com 1 colher de sopa de vinagre branco), 1 xícara de café forte, 1/2 xícara de óleo vegetal",
-    "modo_preparo": "1. Pré-aqueça o forno a 180°C e unte duas formas de bolo. 2. Em uma tigela grande, peneire a farinha de trigo, o cacau em pó, o fermento, o bicarbonato e o sal. 3. Em outra tigela, bata o açúcar, os ovos e a essência de baunilha até obter uma mistura cremosa. 4. Adicione o buttermilk, o café forte e o óleo à mistura de ovos e açúcar. 5. Misture os ingredientes líquidos com os ingredientes secos até obter uma massa homogênea. 6. Divida a massa entre as duas formas de bolo e leve ao forno por 25-30 minutos, ou até que um palito inserido no centro saia limpo. 7. Deixe os bolos esfriarem antes de desenformar e decorar a gosto.",
-    "link_imagem": "https://i.ytimg.com/vi/qnZ360evVME/maxresdefault.jpg",
+    "modo_preparo": "1- Pré-aqueça o forno a 180°C e unte duas formas de bolo. 2- Em uma tigela grande, peneire a farinha de trigo, o cacau em pó, o fermento, o bicarbonato e o sal. 3- Em outra tigela, bata o açúcar, os ovos e a essência de baunilha até obter uma mistura cremosa. 4- Adicione o buttermilk, o café forte e o óleo à mistura de ovos e açúcar. 5- Misture os ingredientes líquidos com os ingredientes secos até obter uma massa homogênea. 6- Divida a massa entre as duas formas de bolo e leve ao forno por 25-30 minutos, ou até que um palito inserido no centro saia limpo. 7- Deixe os bolos esfriarem antes de desenformar e decorar a gosto.",    "link_imagem": "https://i.ytimg.com/vi/qnZ360evVME/maxresdefault.jpg",
     "tipo": "doce",
     "created_at": "2023-12-31T01:55:42.140Z",
     "IngredientesBase": [
@@ -125,8 +120,7 @@
     "id": 13,
     "receita": "Mousse de Maracujá",
     "ingredientes": "1 lata de leite condensado, 1 lata de creme de leite, suco de 3 maracujás, 1/2 xícara de açúcar, sementes de maracujá para decorar",
-    "modo_preparo": "1. Em uma tigela, misture o leite condensado e o creme de leite. 2. Adicione o suco de maracujá e o açúcar. Misture bem até obter um creme homogêneo. 3. Despeje a mousse em taças individuais. 4. Leve à geladeira por pelo menos 2 horas. 5. Antes de servir, decore com sementes de maracujá.",
-    "link_imagem": "https://www.easyanddelish.com/wp-content/uploads/2020/07/passion-fruit-mousse-recipe-2-como-fazer-mousse-de-maracuja-2.jpg",
+    "modo_preparo": "1- Em uma tigela, misture o leite condensado e o creme de leite. 2- Adicione o suco de maracujá e o açúcar. Misture bem até obter um creme homogêneo. 3- Despeje a mousse em taças individuais. 4- Leve à geladeira por pelo menos 2 horas. 5- Antes de servir, decore com sementes de maracujá.",    "link_imagem": "https://www.easyanddelish.com/wp-content/uploads/2020/07/passion-fruit-mousse-recipe-2-como-fazer-mousse-de-maracuja-2.jpg",
     "tipo": "doce",
     "created_at": "2023-12-31T01:56:22.111Z",
     "IngredientesBase": [
@@ -147,7 +141,7 @@
     "id": 15,
     "receita": "Panquecas Americanas",
     "ingredientes": "1 xícara de farinha de trigo, 2 colheres de açúcar, 1 colher de chá de fermento em pó, 1/2 colher de chá de bicarbonato de sódio, 1 pitada de sal, 1 ovo, 1 xícara de leite, 2 colheres de sopa de manteiga derretida, óleo para untar a frigideira",
-    "modo_preparo": "1. Em uma tigela, misture a farinha de trigo, o açúcar, o fermento, o bicarbonato de sódio e o sal. 2. Em outra tigela, bata o ovo e adicione o leite e a manteiga derretida. 3. Despeje a mistura líquida na mistura de ingredientes secos e mexa até obter uma massa homogênea. 4. Aqueça uma frigideira antiaderente e unte com um pouco de óleo. 5. Coloque conchas de massa na frigideira e cozinhe até que bolhas se formem na superfície. 6. Vire as panquecas e cozinhe do outro lado até dourarem. 7. Sirva as panquecas americanas com o acompanhamento de sua preferência.",
+    "modo_preparo": "1- Em uma tigela, misture a farinha de trigo, o açúcar, o fermento, o bicarbonato de sódio e o sal. 2- Em outra tigela, bata o ovo e adicione o leite e a manteiga derretida. 3- Despeje a mistura líquida na mistura de ingredientes secos e mexa até obter uma massa homogênea. 4- Aqueça uma frigideira antiaderente e unte com um pouco de óleo. 5- Coloque conchas de massa na frigideira e cozinhe até que bolhas se formem na superfície. 6- Vire as panquecas e cozinhe do outro lado até dourarem. 7- Sirva as panquecas americanas com o acompanhamento de sua preferência.",
     "link_imagem": "https://static.itdg.com.br/images/360-240/7ce273e5b1841e3cf6986d2cd8aee673/283895-original.jpg",
     "tipo": "doce",
     "created_at": "2023-12-31T01:56:37.812Z",

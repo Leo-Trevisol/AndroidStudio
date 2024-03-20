@@ -6,6 +6,7 @@ import static com.projeto.intentsimplicitas.fragments.ReceitasFragment.salgadoKe
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -43,11 +45,16 @@ public class ModulosTipoReceitasFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_modulos, container, false);
 
+
+
         if(getArguments() != null) {
             receitasResponseBean = (List<ReceitasResponseBean>) getArguments().get(TIPO_RECEITA_KEY);
 
-            if(!Utils.isEmpty(receitasResponseBean))
-                 chamarModulosReceitas(view);
+            if(!Utils.isEmpty(receitasResponseBean)){
+                ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle("Receitas "
+                        + receitasResponseBean.get(0).getTipo());
+                chamarModulosReceitas(view);
+            }
         }
 
         return view;

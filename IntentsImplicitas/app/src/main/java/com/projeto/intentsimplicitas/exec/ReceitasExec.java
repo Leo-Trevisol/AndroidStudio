@@ -75,7 +75,7 @@ public class ReceitasExec implements Serializable {
         this.lstReceitasAgridoces = lstReceitasAgridoces;
     }
 
-    public void getLstReceitasTipos(Context context, String tipoReceita, Action0 onCompletionListener) {
+    public void getLstReceitasTipos(Context context, String tipoReceita, Action0 onCompletionListener, Action0 onCancelListener) {
 
         if (isLstReceitasCarregadas(tipoReceita)) {
             onCompletionListener.call();
@@ -96,15 +96,17 @@ public class ReceitasExec implements Serializable {
                 if (!Utils.isEmpty(lstReturnReceitas)) {
                     addItensListaReceitas(tipoReceita, lstReturnReceitas);
                 } else {
-                    Toast.makeText(context, "Receitas indisponiveis no momento.", Toast.LENGTH_SHORT).show();
+                    if(onCancelListener != null)
+                      onCancelListener.call();
                 }
-
                 onCompletionListener.call();
             } catch (JSONException e) {
-                e.printStackTrace();
+                if(onCancelListener != null)
+                    onCancelListener.call();
             }
         }else{
-            Toast.makeText(context, "Receitas indisponiveis no momento.", Toast.LENGTH_SHORT).show();
+            if(onCancelListener != null)
+                onCancelListener.call();
         }
 
     }
@@ -159,7 +161,7 @@ public class ReceitasExec implements Serializable {
         }else if(tipoReceita.equals(doceKey)){
             return context.getResources().openRawResource(R.raw.receitas_doces);
         }else if(tipoReceita.equals(agriDoceKey)){
-            return null;
+            return context.getResources().openRawResource(R.raw.receitas_agridoces);
         }
         return null;
     }
@@ -218,38 +220,38 @@ public class ReceitasExec implements Serializable {
         return lstReturn;
 
     }
-    public void getLstReceitasTipos(Context context, String tipoReceita, Action0 onCompletionListener, Action0 onCancelListener ){
-
-        if(isLstReceitasCarregadas(tipoReceita)){
-            onCompletionListener.call();
-            return;
-        }
-
-        CustomAsyncTask task = new CustomAsyncTask(context, "", 10000, "Aguarde, por favor...") {
-
-            @Override
-            public void customOnPostExecute() {
-
-                if (this.getConteudoRetorno() != null && !this.getConteudoRetorno().trim().isEmpty()) {
-
-                    Gson gson = new Gson();
-                    Type receitaListType = new TypeToken<List<ReceitasResponseBean>>() {
-                    }.getType();
-                    List<ReceitasResponseBean> lstReceitas = gson.fromJson(this.getConteudoRetorno(), receitaListType);
-                    if (!Utils.isEmpty(lstReceitas)) {
-
-                        addItensListaReceitas(tipoReceita, lstReceitas);
-
-                        onCompletionListener.call();
-
-                    } else {
-                        onCancelListener.call();
-                    }
-                }
-            }
-
-        };
-
-        task.execute("https://gold-anemone-wig.cyclic.app/receitas/tipo/"+tipoReceita);
-    }
+//    public void getLstReceitasTipos(Context context, String tipoReceita, Action0 onCompletionListener, Action0 onCancelListener ){
+//
+//        if(isLstReceitasCarregadas(tipoReceita)){
+//            onCompletionListener.call();
+//            return;
+//        }
+//
+//        CustomAsyncTask task = new CustomAsyncTask(context, "", 10000, "Aguarde, por favor...") {
+//
+//            @Override
+//            public void customOnPostExecute() {
+//
+//                if (this.getConteudoRetorno() != null && !this.getConteudoRetorno().trim().isEmpty()) {
+//
+//                    Gson gson = new Gson();
+//                    Type receitaListType = new TypeToken<List<ReceitasResponseBean>>() {
+//                    }.getType();
+//                    List<ReceitasResponseBean> lstReceitas = gson.fromJson(this.getConteudoRetorno(), receitaListType);
+//                    if (!Utils.isEmpty(lstReceitas)) {
+//
+//                        addItensListaReceitas(tipoReceita, lstReceitas);
+//
+//                        onCompletionListener.call();
+//
+//                    } else {
+//                        onCancelListener.call();
+//                    }
+//                }
+//            }
+//
+//        };
+//
+//        task.execute("https://gold-anemone-wig.cyclic.app/receitas/tipo/"+tipoReceita);
+//    }
 }

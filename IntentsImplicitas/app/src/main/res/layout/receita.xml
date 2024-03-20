@@ -178,13 +178,22 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/text_modo_preparo_receita"
+    <LinearLayout
+        android:id="@+id/linear4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="modo de preparo"
-        android:textStyle="bold">
-    </TextView>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ExpandableListView
+            android:id="@+id/expandableListView_modo_preparo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="#0f0"
+            android:groupIndicator="@null"
+            android:outlineAmbientShadowColor="#0f0"
+            android:outlineSpotShadowColor="#0f0" />
+
+    </LinearLayout>
 
 </LinearLayout>

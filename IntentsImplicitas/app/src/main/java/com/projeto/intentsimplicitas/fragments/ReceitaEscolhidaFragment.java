@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.projeto.intentsimplicitas.R;
 import com.projeto.intentsimplicitas.adapter.IngredientesPopUpReceitasAdapter;
 import com.projeto.intentsimplicitas.adapter.IngredientesReceitaAdapter;
+import com.projeto.intentsimplicitas.bean.ModoPreparoBean;
 import com.projeto.intentsimplicitas.bean.ReceitasResponseBean;
 import com.projeto.intentsimplicitas.utils.Utils;
 
@@ -51,10 +52,23 @@ public class ReceitaEscolhidaFragment extends Fragment {
 
                 List<String> nomeIngredientesGroup = tipoReceita.getIngredientesBase().get(0).getNomesIngrediente();
 
-                List<String>  lstIngredientesSeparadosChild = Utils.splitString(tipoReceita.getIngredientes());
+                List<String>  lstIngredientesSeparadosChild = Utils.splitStringVirgula(tipoReceita.getIngredientes());
 
                 IngredientesReceitaAdapter adapter = new IngredientesReceitaAdapter(getContext(), nomeIngredientesGroup, lstIngredientesSeparadosChild);
                 expandableListView.setAdapter(adapter);
+
+                ModoPreparoBean modoPreparoBean =  Utils.splitStringModoPreparo(tipoReceita.getModo_preparo());
+
+                if((Utils.isEmpty(modoPreparoBean.getPasso()) && Utils.isEmpty(modoPreparoBean.getDescricao()))){
+
+                IngredientesReceitaAdapter adapterModoPreparo = new IngredientesReceitaAdapter(getContext(), modoPreparoBean.getPasso(), modoPreparoBean.getDescricao());
+                expandableListView.setAdapter(adapterModoPreparo);
+
+                }
+
+
+
+
             }
         }
 
@@ -68,10 +82,10 @@ public class ReceitaEscolhidaFragment extends Fragment {
 
     private void initComponents(View view, ReceitasResponseBean receitaEscolhida) {
         TextView textReceita = view.findViewById(R.id.text_nome_receita);
-        TextView textModoPreparo = view.findViewById(R.id.text_modo_preparo_receita);
+     //   TextView textModoPreparo = view.findViewById(R.id.text_modo_preparo_receita);
 
         textReceita.setText(receitaEscolhida.getReceita());
-        textModoPreparo.setText(receitaEscolhida.getModo_preparo());
+       // textModoPreparo.setText(receitaEscolhida.getModo_preparo());
 
         ImageView popUp = view.findViewById(R.id.pop_up_receitas);
 
@@ -105,14 +119,12 @@ public class ReceitaEscolhidaFragment extends Fragment {
         eyeOpenPreparo.setOnClickListener(v -> {
             eyeClosedPreparo.setVisibility(View.VISIBLE);
             eyeOpenPreparo.setVisibility(View.GONE);
-            textModoPreparo.setVisibility(View.INVISIBLE);
 
         });
 
         eyeClosedPreparo.setOnClickListener(v -> {
             eyeOpenPreparo.setVisibility(View.VISIBLE);
             eyeClosedPreparo.setVisibility(View.GONE);
-            textModoPreparo.setVisibility(View.VISIBLE);
         });
 
     }

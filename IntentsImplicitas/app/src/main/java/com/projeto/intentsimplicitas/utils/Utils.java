@@ -4,6 +4,7 @@ import android.widget.EditText;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.projeto.intentsimplicitas.bean.ModoPreparoBean;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -36,7 +37,7 @@ public class Utils {
         }
     }
 
-    public static List<String> splitString(String input) {
+    public static List<String> splitStringVirgula(String input) {
         List<String> items = new ArrayList<>();
         Pattern pattern = Pattern.compile("[^,]+\\([^)]+\\)|[^,]+");
         Matcher matcher = pattern.matcher(input);
@@ -48,5 +49,22 @@ public class Utils {
         return items;
     }
 
+    public static ModoPreparoBean splitStringModoPreparo(String input){
+
+              ModoPreparoBean modoPreparoBean = new ModoPreparoBean();
+
+                String[] frases = input.split("\\. ");
+
+                for (String frase : frases) {
+                    String[] partes = frase.split("-");
+
+                    if (partes.length == 2) {
+                        modoPreparoBean.getPasso().add(partes[0]);
+                        modoPreparoBean.getDescricao().add(partes[1]);
+                    }
+                }
+
+                return modoPreparoBean;
+            }
 
 }

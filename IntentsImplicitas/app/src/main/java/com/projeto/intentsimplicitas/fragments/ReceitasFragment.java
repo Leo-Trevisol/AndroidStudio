@@ -3,6 +3,7 @@ package com.projeto.intentsimplicitas.fragments;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -44,6 +45,7 @@ public class ReceitasFragment extends Fragment {
 
     @Override
     public void onResume() {
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle("Receitas");
         super.onResume();
     }
 
@@ -77,7 +79,8 @@ public class ReceitasFragment extends Fragment {
 
             ft.commit();
 
-        });
+        },()->{Toast.makeText(getContext(), "Receitas do tipo " + key +
+               " indisponiveis no momento.", Toast.LENGTH_SHORT).show();});
 
 
 
