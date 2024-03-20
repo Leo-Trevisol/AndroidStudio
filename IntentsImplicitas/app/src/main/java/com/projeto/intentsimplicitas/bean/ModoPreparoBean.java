@@ -1,5 +1,6 @@
 package com.projeto.intentsimplicitas.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ModoPreparoBean {
@@ -17,6 +18,9 @@ public class ModoPreparoBean {
     }
 
     public List<String> getPasso() {
+        if (passo == null)
+            passo = new ArrayList<>();
+
         return passo;
     }
 
@@ -25,6 +29,9 @@ public class ModoPreparoBean {
     }
 
     public List<String> getDescricao() {
+        if(descricao == null)
+            descricao = new ArrayList<>();
+
         return descricao;
     }
 

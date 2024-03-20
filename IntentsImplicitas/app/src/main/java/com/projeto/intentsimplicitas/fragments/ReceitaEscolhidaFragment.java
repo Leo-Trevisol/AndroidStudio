@@ -36,7 +36,7 @@ import java.util.List;
 
 public class ReceitaEscolhidaFragment extends Fragment {
 
-    ExpandableListView expandableListView;
+    ExpandableListView expandableListViewIngredientes, expandableListViewModoPreparo;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final Context contextThemeWrapper = new android.view.ContextThemeWrapper(getActivity(), R.style.Base_Theme_IntentsImplicitas);
@@ -48,26 +48,25 @@ public class ReceitaEscolhidaFragment extends Fragment {
             if(tipoReceita != null){
                 initComponents(view, tipoReceita);
 
-                 expandableListView = view.findViewById(R.id.expandableListView_ingredientes_necessarios);
+                expandableListViewIngredientes = view.findViewById(R.id.expandableListView_ingredientes_necessarios);
 
                 List<String> nomeIngredientesGroup = tipoReceita.getIngredientesBase().get(0).getNomesIngrediente();
 
                 List<String>  lstIngredientesSeparadosChild = Utils.splitStringVirgula(tipoReceita.getIngredientes());
 
                 IngredientesReceitaAdapter adapter = new IngredientesReceitaAdapter(getContext(), nomeIngredientesGroup, lstIngredientesSeparadosChild);
-                expandableListView.setAdapter(adapter);
+                expandableListViewIngredientes.setAdapter(adapter);
+
+                expandableListViewModoPreparo = view.findViewById(R.id.expandableListView_modo_preparo);
 
                 ModoPreparoBean modoPreparoBean =  Utils.splitStringModoPreparo(tipoReceita.getModo_preparo());
 
-                if((Utils.isEmpty(modoPreparoBean.getPasso()) && Utils.isEmpty(modoPreparoBean.getDescricao()))){
+                if((!Utils.isEmpty(modoPreparoBean.getPasso()) && !Utils.isEmpty(modoPreparoBean.getDescricao()))){
 
                 IngredientesReceitaAdapter adapterModoPreparo = new IngredientesReceitaAdapter(getContext(), modoPreparoBean.getPasso(), modoPreparoBean.getDescricao());
-                expandableListView.setAdapter(adapterModoPreparo);
+                    expandableListViewModoPreparo.setAdapter(adapterModoPreparo);
 
                 }
-
-
-
 
             }
         }
@@ -101,30 +100,34 @@ public class ReceitaEscolhidaFragment extends Fragment {
 
         ImageView eyeClosedPreparo = view.findViewById(R.id.eye_closed_preparo);
 
-        LinearLayout layoutExpand = view.findViewById(R.id.linear2);
+        LinearLayout layoutExpandIngredientes = view.findViewById(R.id.linear2);
+
+        LinearLayout layoutExpandModoPreparo = view.findViewById(R.id.linear4);
 
         eyeOpenIngredientes.setOnClickListener(v -> {
             eyeClosedIngredientes.setVisibility(View.VISIBLE);
             eyeOpenIngredientes.setVisibility(View.GONE);
-            layoutExpand.setVisibility(View.GONE);
+            layoutExpandIngredientes.setVisibility(View.GONE);
 
         });
 
         eyeClosedIngredientes.setOnClickListener(v -> {
             eyeOpenIngredientes.setVisibility(View.VISIBLE);
             eyeClosedIngredientes.setVisibility(View.GONE);
-            layoutExpand.setVisibility(View.VISIBLE);
+            layoutExpandIngredientes.setVisibility(View.VISIBLE);
         });
 
         eyeOpenPreparo.setOnClickListener(v -> {
             eyeClosedPreparo.setVisibility(View.VISIBLE);
             eyeOpenPreparo.setVisibility(View.GONE);
+            layoutExpandModoPreparo.setVisibility(View.INVISIBLE);
 
         });
 
         eyeClosedPreparo.setOnClickListener(v -> {
             eyeOpenPreparo.setVisibility(View.VISIBLE);
             eyeClosedPreparo.setVisibility(View.GONE);
+            layoutExpandModoPreparo.setVisibility(View.VISIBLE);
         });
 
     }

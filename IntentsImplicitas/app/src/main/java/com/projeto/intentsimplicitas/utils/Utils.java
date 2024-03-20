@@ -59,7 +59,7 @@ public class Utils {
                     String[] partes = frase.split("-");
 
                     if (partes.length == 2) {
-                        modoPreparoBean.getPasso().add(partes[0]);
+                        modoPreparoBean.getPasso().add("Passo " + partes[0]);
                         modoPreparoBean.getDescricao().add(partes[1]);
                     }
                 }
